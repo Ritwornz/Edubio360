@@ -1,0 +1,56 @@
+:root {
+    --amarillo: #ffc400;
+    --amarillo-hover: #e6b000;
+    --amarillo-suave: #fff4c2;
+
+    --negro: #171717;
+    --gris-oscuro: #2b2b2b;
+    --gris: #6b7280;
+    --gris-medio: #d1d5db;
+    --gris-claro: #f4f5f7;
+
+    --blanco: #ffffff;
+
+    --borde: #e5e7eb;
+    --borde-oscuro: #c7cbd1;
+
+    --exito: #146c43;
+    --exito-suave: #d1e7dd;
+
+    --error: #dc3545;
+    --error-suave: #f8d7da;
+
+    --advertencia: #f59e0b;
+    --advertencia-suave: #fff3cd;
+
+    --radio-sm: 8px;
+    --radio-md: 14px;
+    --radio-lg: 22px;
+    --radio-completo: 999px;
+
+    --sombra-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --sombra-md: 0 8px 24px rgba(0, 0, 0, 0.10);
+    --sombra-lg: 0 14px 40px rgba(0, 0, 0, 0.12);
+
+    --espacio-xs: 4px;
+    --espacio-sm: 8px;
+    --espacio-md: 16px;
+    --espacio-lg: 24px;
+    --espacio-xl: 32px;
+    --espacio-2xl: 48px;
+    --espacio-3xl: 64px;
+
+    --ancho-maximo: 1200px;
+
+    --fuente-principal: Arial, Helvetica, sans-serif;
+
+    --texto-xs: 0.75rem;
+    --texto-sm: 0.875rem;
+    --texto-base: 1rem;
+    --texto-lg: 1.125rem;
+    --texto-xl: 1.5rem;
+    --texto-2xl: 2rem;
+    --texto-3xl: 2.75rem;
+
+    --transicion: 0.2s ease;
+}

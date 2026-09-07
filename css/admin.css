@@ -1,0 +1,60 @@
+.admin-body {
+    background-color: #eceff3;
+}
+
+.admin-navbar {
+    background-color: var(--negro);
+    color: var(--blanco);
+}
+
+.admin-navbar .logo,
+.admin-navbar a {
+    color: var(--blanco);
+}
+
+.admin-navbar .nav-links a:hover {
+    color: var(--amarillo);
+}
+
+.admin-navbar a:focus-visible {
+    outline-color: var(--amarillo);
+}
+
+.admin-titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--espacio-md);
+    margin-bottom: var(--espacio-xl);
+    flex-wrap: wrap;
+}
+
+.admin-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--espacio-lg);
+}
+
+.admin-card {
+    border-top: 5px solid var(--amarillo);
+}
+
+.admin-card p {
+    margin-bottom: var(--espacio-lg);
+}
+
+.acciones-tabla {
+    display: flex;
+    gap: var(--espacio-sm);
+    flex-wrap: wrap;
+}
+
+.admin-formulario {
+    max-width: 800px;
+}
+
+@media (max-width: 768px) {
+    .admin-grid {
+        grid-template-columns: 1fr;
+    }
+}

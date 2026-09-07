@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduBío 360 | Nueva oferta</title>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body class="admin-body">
+
+    <header class="navbar admin-navbar">
+
+        <div class="navbar-contenido">
+
+            <a href="index.html" class="logo">
+                EduBío 360 ADMIN
+            </a>
+
+            <nav aria-label="Navegación administrativa">
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="ofertas.html">Ofertas</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                    <li><a href="../index.html">Volver al sitio</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="seccion">
+
+            <div class="contenedor admin-formulario">
+
+                <div class="tarjeta formulario-tarjeta">
+
+                    <h1>Nueva oferta académica</h1>
+
+                    <form id="formOferta" novalidate>
+
+                        <div class="grupo-formulario">
+                            <label for="codigo" class="etiqueta">Código</label>
+                            <input type="text" id="codigo" name="codigo" class="campo" minlength="3" maxlength="20">
+                            <small id="errorCodigo" class="mensaje-error"></small>
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="carrera" class="etiqueta">Carrera</label>
+                            <input type="text" id="carrera" name="carrera" class="campo" maxlength="100">
+                            <small id="errorCarrera" class="mensaje-error"></small>
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="institucion" class="etiqueta">Institución</label>
+                            <input type="text" id="institucion" name="institucion" class="campo" maxlength="150">
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="sede" class="etiqueta">Sede</label>
+                            <input type="text" id="sede" name="sede" class="campo" maxlength="100">
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="area" class="etiqueta">Área</label>
+
+                            <select id="area" name="area" class="campo">
+                                <option value="">Seleccione</option>
+                                <option>Tecnología</option>
+                                <option>Salud</option>
+                                <option>Administración</option>
+                                <option>Educación</option>
+                                <option>Ciencias Sociales</option>
+                            </select>
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="modalidad" class="etiqueta">Modalidad</label>
+
+                            <select id="modalidad" name="modalidad" class="campo">
+                                <option value="">Seleccione</option>
+                                <option>Presencial</option>
+                                <option>Semipresencial</option>
+                                <option>Online</option>
+                            </select>
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="jornada" class="etiqueta">Jornada</label>
+
+                            <select id="jornada" name="jornada" class="campo">
+                                <option value="">Seleccione</option>
+                                <option>Diurna</option>
+                                <option>Vespertina</option>
+                            </select>
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="duracion" class="etiqueta">Duración</label>
+                            <input type="text" id="duracion" name="duracion" class="campo" maxlength="50">
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="matricula" class="etiqueta">Matrícula</label>
+                            <input type="number" id="matricula" name="matricula" class="campo" min="0">
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="arancel" class="etiqueta">Arancel</label>
+                            <input type="number" id="arancel" name="arancel" class="campo" min="0">
+                            <small id="errorArancel" class="mensaje-error"></small>
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="descripcion" class="etiqueta">Descripción</label>
+                            <textarea id="descripcion" name="descripcion" class="campo" maxlength="500"></textarea>
+                        </div>
+
+                        <div class="grupo-formulario">
+                            <label for="imagen" class="etiqueta">Imagen</label>
+                            <input type="file" id="imagen" name="imagen" class="campo" accept="image/*">
+                        </div>
+
+                        <button type="submit" class="boton boton-primario">
+                            Guardar
+                        </button>
+
+                        <a href="ofertas.html" class="boton boton-claro">
+                            Cancelar
+                        </a>
+
+                        <p
+                            id="mensajeOferta"
+                            class="mensaje-exito oculto"
+                            role="status"
+                        >
+                            Oferta guardada correctamente.
+                        </p>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="../js/oferta.js"></script>
+
+</body>
+
+</html>

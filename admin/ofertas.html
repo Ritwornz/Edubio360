@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduBío 360 | Administrar ofertas</title>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body class="admin-body">
+
+    <header class="navbar admin-navbar">
+
+        <div class="navbar-contenido">
+
+            <a href="index.html" class="logo">
+                EduBío 360 ADMIN
+            </a>
+
+            <nav aria-label="Navegación administrativa">
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="ofertas.html">Ofertas</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                    <li><a href="../index.html">Volver al sitio</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="seccion">
+
+            <div class="contenedor">
+
+                <div class="admin-titulo">
+
+                    <div>
+                        <span class="badge">Mantenedor</span>
+                        <h1>Ofertas académicas</h1>
+                    </div>
+
+                    <a
+                        href="oferta-nueva.html"
+                        class="boton boton-primario"
+                    >
+                        Nueva oferta
+                    </a>
+
+                </div>
+
+                <div class="tabla-responsive">
+
+                    <table class="tabla">
+
+                        <caption class="solo-lectores">Listado de ofertas académicas</caption>
+
+                        <thead>
+                            <tr>
+                                <th>Código</th>
+                                <th>Carrera</th>
+                                <th>Institución</th>
+                                <th>Sede</th>
+                                <th>Arancel</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>OF-001</td>
+                                <td>Ingeniería Informática</td>
+                                <td>Institución A</td>
+                                <td>Concepción</td>
+                                <td>$3.200.000</td>
+
+                                <td>
+                                    <div class="acciones-tabla">
+
+                                        <a
+                                            href="../detalle.html?id=1"
+                                            class="boton boton-claro"
+                                        >
+                                            Ver
+                                        </a>
+
+                                        <a
+                                            href="oferta-editar.html"
+                                            class="boton boton-secundario"
+                                        >
+                                            Editar
+                                        </a>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>OF-002</td>
+                                <td>Enfermería</td>
+                                <td>Institución B</td>
+                                <td>Concepción</td>
+                                <td>$4.100.000</td>
+
+                                <td>
+                                    <div class="acciones-tabla">
+
+                                        <a
+                                            href="../detalle.html?id=3"
+                                            class="boton boton-claro"
+                                        >
+                                            Ver
+                                        </a>
+
+                                        <a
+                                            href="oferta-editar.html"
+                                            class="boton boton-secundario"
+                                        >
+                                            Editar
+                                        </a>
+
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

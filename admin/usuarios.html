@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduBío 360 | Usuarios</title>
+
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+</head>
+
+<body class="admin-body">
+
+    <header class="navbar admin-navbar">
+
+        <div class="navbar-contenido">
+
+            <a href="index.html" class="logo">
+                EduBío 360 ADMIN
+            </a>
+
+            <nav aria-label="Navegación administrativa">
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="ofertas.html">Ofertas</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                    <li><a href="../index.html">Volver al sitio</a></li>
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+    <main>
+
+        <section class="seccion">
+
+            <div class="contenedor">
+
+                <div class="admin-titulo">
+
+                    <h1>Usuarios</h1>
+
+                    <a
+                        href="usuario-nuevo.html"
+                        class="boton boton-primario"
+                    >
+                        Nuevo usuario
+                    </a>
+
+                </div>
+
+                <div class="tabla-responsive">
+
+                    <table class="tabla">
+
+                        <caption class="solo-lectores">Listado de usuarios</caption>
+
+                        <thead>
+
+                            <tr>
+                                <th>RUN</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Rol</th>
+                                <th>Acción</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            <tr>
+                                <td>123456785</td>
+                                <td>Usuario Ejemplo</td>
+                                <td>usuario@gmail.com</td>
+                                <td>Estudiante</td>
+
+                                <td>
+                                    <a
+                                        href="usuario-editar.html"
+                                        class="boton boton-secundario"
+                                    >
+                                        Editar
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>111111111</td>
+                                <td>Administrador Demo</td>
+                                <td>admin@duoc.cl</td>
+                                <td>Administrador</td>
+
+                                <td>
+                                    <a
+                                        href="usuario-editar.html"
+                                        class="boton boton-secundario"
+                                    >
+                                        Editar
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EduBío 360 | Iniciar sesión</title>
+
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/componentes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="navbar-contenido">
+            <a href="index.html" class="logo">EduBío 360</a>
+
+            <nav aria-label="Navegación principal">
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Carreras</a></li>
+                    <li><a href="novedades.html">Novedades</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                    <li><a href="comparar.html">Comparar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="seccion">
+
+            <div class="contenedor formulario-contenedor">
+
+                <div class="tarjeta formulario-tarjeta">
+
+                    <h1>Iniciar sesión</h1>
+
+                    <p class="descripcion-formulario">
+                        Ingresa tus datos para continuar.
+                    </p>
+
+                    <form id="formLogin" novalidate>
+
+                        <div class="grupo-formulario">
+
+                            <label for="correo" class="etiqueta">
+                                Correo electrónico
+                            </label>
+
+                            <input
+                                type="email"
+                                id="correo"
+                                name="correo"
+                                class="campo"
+                                maxlength="100"
+                                autocomplete="email"
+                                aria-describedby="errorCorreo"
+                            >
+
+                            <small
+                                id="errorCorreo"
+                                class="mensaje-error"
+                            ></small>
+
+                        </div>
+
+                        <div class="grupo-formulario">
+
+                            <label for="password" class="etiqueta">
+                                Contraseña
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="campo"
+                                minlength="4"
+                                maxlength="10"
+                                autocomplete="current-password"
+                                aria-describedby="errorPassword"
+                            >
+
+                            <small
+                                id="errorPassword"
+                                class="mensaje-error"
+                            ></small>
+
+                        </div>
+
+                        <button
+                            type="submit"
+                            class="boton boton-primario boton-ancho"
+                        >
+                            Iniciar sesión
+                        </button>
+
+                        <p id="mensajeLogin" class="mensaje-exito oculto" role="status">
+                            Inicio de sesión exitoso.
+                        </p>
+
+                    </form>
+
+                    <p class="enlace-formulario">
+                        ¿No tienes cuenta?
+                        <a href="registro.html">Crear cuenta</a>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-contenido">
+            <p>© 2026 EduBío 360</p>
+        </div>
+    </footer>
+
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>
