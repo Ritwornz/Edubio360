@@ -97,6 +97,14 @@ function mostrarDetalle() {
                     Agregar a comparar
                 </button>
 
+                <a href="solicitud.html?oferta=${oferta.id}" class="boton boton-secundario">
+                    Solicitar orientación
+                </a>
+
+                <a href="mapa.html?sede=${encodeURIComponent(oferta.sede)}" class="boton boton-claro">
+                    Ver sede en mapa
+                </a>
+
             </div>
 
         </article>

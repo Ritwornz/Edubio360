@@ -14,7 +14,7 @@ const errorRun = document.getElementById("errorRun");
 const errorNombre = document.getElementById("errorNombre");
 const errorApellidos = document.getElementById("errorApellidos");
 const errorCorreo = document.getElementById("errorCorreo");
-const errorFechaNacimiento = document.createElement("small");
+let errorFechaNacimiento = document.getElementById("errorFechaNacimiento");
 const errorTipoUsuario = document.getElementById("errorTipoUsuario");
 const errorRegion = document.getElementById("errorRegion");
 const errorComuna = document.getElementById("errorComuna");
@@ -22,9 +22,13 @@ const errorDireccion = document.getElementById("errorDireccion");
 
 const mensajeUsuario = document.getElementById("mensajeUsuario");
 
-errorFechaNacimiento.id = "errorFechaNacimiento";
-errorFechaNacimiento.className = "mensaje-error";
-fechaNacimiento.insertAdjacentElement("afterend", errorFechaNacimiento);
+if (!errorFechaNacimiento) {
+    errorFechaNacimiento = document.createElement("small");
+    errorFechaNacimiento.id = "errorFechaNacimiento";
+    errorFechaNacimiento.className = "mensaje-error";
+    fechaNacimiento.insertAdjacentElement("afterend", errorFechaNacimiento);
+}
+
 fechaNacimiento.setAttribute("aria-describedby", errorFechaNacimiento.id);
 
 const camposUsuario = [
@@ -37,7 +41,9 @@ const camposUsuario = [
     [region, errorRegion],
     [comuna, errorComuna],
     [direccion, errorDireccion]
-];
+].filter(function ([campo, error]) {
+    return campo && error;
+});
 
 camposUsuario.forEach(function ([campo, error]) {
     error.setAttribute("role", "alert");
@@ -48,15 +54,14 @@ camposUsuario.forEach(function ([campo, error]) {
 });
 
 function correoValido(valor) {
-    const expresion = /^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i;
-
+    const expresion = /^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|duocuc\.cl|gmail\.com)$/i;
     return expresion.test(valor);
 }
 
 function validarRun(valor) {
     valor = valor.toUpperCase().trim();
 
-    if (!/^[0-9]{6,8}[0-9K]$/.test(valor)) {
+    if (!/^\d{6,8}[\dK]$/.test(valor)) {
         return false;
     }
 
@@ -68,7 +73,6 @@ function validarRun(valor) {
 
     for (let i = cuerpo.length - 1; i >= 0; i--) {
         suma += Number(cuerpo[i]) * multiplicador;
-
         multiplicador++;
 
         if (multiplicador > 7) {
@@ -77,7 +81,6 @@ function validarRun(valor) {
     }
 
     const resto = 11 - (suma % 11);
-
     let digitoCalculado;
 
     if (resto === 11) {
@@ -91,13 +94,9 @@ function validarRun(valor) {
     return digitoCalculado === digitoIngresado;
 }
 
-function limpiarErrores() {
-    camposUsuario.forEach(function ([campo, error]) {
-        campo.removeAttribute("aria-invalid");
-        error.textContent = "";
-    });
-
-    mensajeUsuario.classList.add("oculto");
+function limpiarCampo(campo, error) {
+    campo.removeAttribute("aria-invalid");
+    error.textContent = "";
 }
 
 function mostrarError(campo, error, mensaje) {
@@ -105,105 +104,170 @@ function mostrarError(campo, error, mensaje) {
     error.textContent = mensaje;
 }
 
-function validarUsuario() {
-    limpiarErrores();
+function validarCampoUsuario(campo) {
+    const par = camposUsuario.find(function ([campoActual]) {
+        return campoActual === campo;
+    });
 
-    let valido = true;
-
-    const valorRun = run.value.trim();
-    const valorNombre = nombre.value.trim();
-    const valorApellidos = apellidos.value.trim();
-    const valorCorreo = correo.value.trim();
-    const valorFechaNacimiento = fechaNacimiento.value;
-    const valorDireccion = direccion.value.trim();
-
-    if (valorRun === "") {
-        mostrarError(run, errorRun, "El RUN es obligatorio.");
-        valido = false;
-    } else if (valorRun.includes(".") || valorRun.includes("-")) {
-        mostrarError(run, errorRun, "Ingrese el RUN sin puntos ni guion.");
-        valido = false;
-    } else if (!validarRun(valorRun)) {
-        mostrarError(run, errorRun, "El RUN ingresado no es válido.");
-        valido = false;
+    if (!par) {
+        return true;
     }
 
-    if (valorNombre === "") {
-        mostrarError(nombre, errorNombre, "El nombre es obligatorio.");
-        valido = false;
-    } else if (valorNombre.length > 50) {
-        mostrarError(nombre, errorNombre, "El nombre no puede superar los 50 caracteres.");
-        valido = false;
+    const error = par[1];
+    limpiarCampo(campo, error);
+
+    const valor = campo.value.trim();
+
+    if (campo === run) {
+        if (valor === "") {
+            mostrarError(run, errorRun, "El RUN es obligatorio.");
+            return false;
+        }
+
+        if (valor.includes(".") || valor.includes("-")) {
+            mostrarError(run, errorRun, "Ingrese el RUN sin puntos ni guion.");
+            return false;
+        }
+
+        if (!validarRun(valor)) {
+            mostrarError(run, errorRun, "El RUN ingresado no es válido.");
+            return false;
+        }
     }
 
-    if (valorApellidos === "") {
-        mostrarError(apellidos, errorApellidos, "Los apellidos son obligatorios.");
-        valido = false;
-    } else if (valorApellidos.length > 100) {
-        mostrarError(apellidos, errorApellidos, "Los apellidos no pueden superar los 100 caracteres.");
-        valido = false;
+    if (campo === nombre) {
+        if (valor === "") {
+            mostrarError(nombre, errorNombre, "El nombre es obligatorio.");
+            return false;
+        }
+
+        if (valor.length > 50) {
+            mostrarError(nombre, errorNombre, "El nombre no puede superar los 50 caracteres.");
+            return false;
+        }
     }
 
-    if (valorCorreo === "") {
-        mostrarError(correo, errorCorreo, "El correo es obligatorio.");
-        valido = false;
-    } else if (valorCorreo.length > 100) {
-        mostrarError(correo, errorCorreo, "El correo no puede superar los 100 caracteres.");
-        valido = false;
-    } else if (!correoValido(valorCorreo)) {
-        mostrarError(correo, errorCorreo, "Ingrese un correo @duoc.cl, @profesor.duoc.cl o @gmail.com.");
-        valido = false;
+    if (campo === apellidos) {
+        if (valor === "") {
+            mostrarError(apellidos, errorApellidos, "Los apellidos son obligatorios.");
+            return false;
+        }
+
+        if (valor.length > 100) {
+            mostrarError(apellidos, errorApellidos, "Los apellidos no pueden superar los 100 caracteres.");
+            return false;
+        }
     }
 
-    if (tipoUsuario.value === "") {
-        mostrarError(tipoUsuario, errorTipoUsuario, "Seleccione un tipo de usuario.");
-        valido = false;
+    if (campo === correo) {
+        if (valor === "") {
+            mostrarError(correo, errorCorreo, "El correo es obligatorio.");
+            return false;
+        }
+
+        if (valor.length > 100) {
+            mostrarError(correo, errorCorreo, "El correo no puede superar los 100 caracteres.");
+            return false;
+        }
+
+        if (!correoValido(valor)) {
+            mostrarError(correo, errorCorreo, "Ingrese un correo @duoc.cl, @profesor.duoc.cl, @duocuc.cl o @gmail.com.");
+            return false;
+        }
     }
 
-    if (valorFechaNacimiento === "") {
-        mostrarError(fechaNacimiento, errorFechaNacimiento, "La fecha de nacimiento es obligatoria.");
-        valido = false;
-    } else {
-        const fechaIngresada = new Date(`${valorFechaNacimiento}T00:00:00`);
+    if (campo === fechaNacimiento && valor !== "") {
+        const fechaIngresada = new Date(`${valor}T00:00:00`);
         const hoy = new Date();
         hoy.setHours(0, 0, 0, 0);
 
         if (fechaIngresada > hoy) {
             mostrarError(fechaNacimiento, errorFechaNacimiento, "La fecha de nacimiento no puede ser futura.");
-            valido = false;
+            return false;
         }
     }
 
-    if (region.value === "") {
+    if (campo === tipoUsuario && tipoUsuario && valor === "") {
+        mostrarError(tipoUsuario, errorTipoUsuario, "Seleccione un tipo de usuario.");
+        return false;
+    }
+
+    if (campo === region && valor === "") {
         mostrarError(region, errorRegion, "Seleccione una región.");
-        valido = false;
+        return false;
     }
 
-    if (comuna.value === "") {
+    if (campo === comuna && valor === "") {
         mostrarError(comuna, errorComuna, "Seleccione una comuna.");
-        valido = false;
+        return false;
     }
 
-    if (valorDireccion === "") {
-        mostrarError(direccion, errorDireccion, "La dirección es obligatoria.");
-        valido = false;
-    } else if (valorDireccion.length > 300) {
-        mostrarError(direccion, errorDireccion, "La dirección no puede superar los 300 caracteres.");
-        valido = false;
+    if (campo === direccion) {
+        if (valor === "") {
+            mostrarError(direccion, errorDireccion, "La dirección es obligatoria.");
+            return false;
+        }
+
+        if (valor.length > 300) {
+            mostrarError(direccion, errorDireccion, "La dirección no puede superar los 300 caracteres.");
+            return false;
+        }
     }
+
+    return true;
+}
+
+function validarUsuario() {
+    mensajeUsuario.classList.add("oculto");
+
+    let valido = true;
+
+    camposUsuario.forEach(function ([campo]) {
+        if (!validarCampoUsuario(campo)) {
+            valido = false;
+        }
+    });
 
     if (!valido) {
         const primerCampoInvalido = formUsuario.querySelector('[aria-invalid="true"]');
-        primerCampoInvalido.focus();
+
+        if (primerCampoInvalido) {
+            primerCampoInvalido.focus();
+        }
     }
 
     return valido;
 }
 
+camposUsuario.forEach(function ([campo]) {
+    const evento = campo.tagName === "SELECT" ? "change" : "input";
+
+    campo.addEventListener(evento, function () {
+        mensajeUsuario.classList.add("oculto");
+        validarCampoUsuario(campo);
+    });
+});
+
 formUsuario.addEventListener("submit", function (evento) {
     evento.preventDefault();
 
     if (validarUsuario()) {
+        if (typeof obtenerUsuarios === "function" && tipoUsuario) {
+            const usuarios = obtenerUsuarios();
+            const datos = {
+                run: run.value.trim(),
+                nombre: `${nombre.value.trim()} ${apellidos.value.trim()}`,
+                correo: correo.value.trim().toLowerCase(),
+                rol: tipoUsuario.value,
+                region: region.options[region.selectedIndex].text,
+                comuna: comuna.value,
+                estado: "ACTIVO"
+            };
+            const indice = usuarios.findIndex(function (usuario) { return usuario.correo === datos.correo; });
+            if (indice >= 0) usuarios[indice] = { ...usuarios[indice], ...datos };
+            else usuarios.push(datos);
+            guardarUsuarios(usuarios);
+        }
         mensajeUsuario.classList.remove("oculto");
     }
 });

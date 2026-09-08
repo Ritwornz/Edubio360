@@ -10,7 +10,10 @@ function formatearPrecio(valor) {
 function mostrarOfertas() {
     contenedorOfertas.innerHTML = "";
 
-    ofertas.forEach(function (oferta) {
+    const sedeFiltrada = new URLSearchParams(window.location.search).get("sede");
+    const ofertasVisibles = sedeFiltrada ? ofertas.filter(function (oferta) { return oferta.sede === sedeFiltrada; }) : ofertas;
+
+    ofertasVisibles.forEach(function (oferta) {
         const tarjeta = document.createElement("article");
 
         tarjeta.classList.add("tarjeta", "tarjeta-oferta");

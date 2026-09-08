@@ -111,4 +111,13 @@
     .tabla td {
         padding: 10px 12px;
     }
+
+    #mapa {
+        height: 360px;
+    }
+
+    .solicitud-card {
+        align-items: stretch;
+        flex-direction: column;
+    }
 }

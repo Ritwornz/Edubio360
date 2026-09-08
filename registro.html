@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>EduBío 360 | Registro</title>
 
     <link rel="stylesheet" href="css/variables.css">
@@ -117,7 +116,7 @@
 
                         <div class="grupo-formulario">
                             <label for="fechaNacimiento" class="etiqueta">
-                                Fecha de nacimiento
+                                Fecha de nacimiento (opcional)
                             </label>
 
                             <input
@@ -126,27 +125,21 @@
                                 name="fechaNacimiento"
                                 class="campo"
                                 autocomplete="bday"
+                                aria-describedby="errorFechaNacimiento"
                             >
-                        </div>
 
-                        <div class="grupo-formulario">
-                            <label for="tipoUsuario" class="etiqueta">
-                                Tipo de usuario
-                            </label>
-
-                            <select id="tipoUsuario" name="tipoUsuario" class="campo" aria-describedby="errorTipoUsuario">
-                                <option value="">Seleccione</option>
-                                <option value="ESTUDIANTE">Estudiante</option>
-                                <option value="ADMINISTRADOR">Administrador</option>
-                            </select>
-
-                            <small id="errorTipoUsuario" class="mensaje-error"></small>
+                            <small id="errorFechaNacimiento" class="mensaje-error"></small>
                         </div>
 
                         <div class="grupo-formulario">
                             <label for="region" class="etiqueta">Región</label>
 
-                            <select id="region" name="region" class="campo" aria-describedby="errorRegion">
+                            <select
+                                id="region"
+                                name="region"
+                                class="campo"
+                                aria-describedby="errorRegion"
+                            >
                                 <option value="">Seleccione una región</option>
                             </select>
 
@@ -156,7 +149,13 @@
                         <div class="grupo-formulario">
                             <label for="comuna" class="etiqueta">Comuna</label>
 
-                            <select id="comuna" name="comuna" class="campo" aria-describedby="errorComuna" disabled>
+                            <select
+                                id="comuna"
+                                name="comuna"
+                                class="campo"
+                                aria-describedby="errorComuna"
+                                disabled
+                            >
                                 <option value="">Seleccione una comuna</option>
                             </select>
 

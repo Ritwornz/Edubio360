@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduBío 360 | Solicitar orientación</title>
+    <link rel="stylesheet" href="css/variables.css"><link rel="stylesheet" href="css/global.css"><link rel="stylesheet" href="css/componentes.css"><link rel="stylesheet" href="css/responsive.css">
+</head>
+<body data-rol="ESTUDIANTE">
+    <header class="navbar"><div class="navbar-contenido"><a href="index.html" class="logo">EduBío 360</a><nav aria-label="Navegación principal"><ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="catalogo.html">Carreras</a></li><li><a href="comparar.html">Comparar</a></li><li><a href="mapa.html">Mapa</a></li><li><a href="estudiante/solicitudes.html">Mis solicitudes</a></li><li><a class="cerrar-sesion" href="login.html">Cerrar sesión</a></li></ul></nav></div></header>
+    <main><section class="seccion"><div class="contenedor formulario-contenedor"><div class="tarjeta formulario-tarjeta"><h1>Solicitar orientación</h1><p class="descripcion-formulario">Completa los datos para solicitar apoyo de un orientador.</p>
+        <form id="formSolicitud" novalidate>
+            <div class="grupo-formulario"><label class="etiqueta" for="oferta">Carrera u oferta</label><select class="campo" id="oferta" data-error="errorOferta"><option value="">Seleccione</option></select><small class="mensaje-error" id="errorOferta"></small></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="nombreSolicitud">Nombre</label><input class="campo" id="nombreSolicitud" type="text" maxlength="100" data-error="errorNombreSolicitud"><small class="mensaje-error" id="errorNombreSolicitud"></small></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="correoSolicitud">Correo</label><input class="campo" id="correoSolicitud" type="email" maxlength="100" data-error="errorCorreoSolicitud"><small class="mensaje-error" id="errorCorreoSolicitud"></small></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="motivo">Motivo</label><textarea class="campo" id="motivo" maxlength="500" data-error="errorMotivo"></textarea><small class="mensaje-error" id="errorMotivo"></small></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="fechaPreferida">Fecha preferida</label><input class="campo" id="fechaPreferida" type="date" data-error="errorFechaPreferida"><small class="mensaje-error" id="errorFechaPreferida"></small></div>
+            <button class="boton boton-primario boton-ancho" type="submit">Enviar solicitud</button><p id="mensajeSolicitud" class="mensaje-exito oculto" role="status">Solicitud enviada correctamente.</p>
+        </form></div></div></section></main>
+    <script src="js/auth.js"></script><script src="js/datos-ofertas.js"></script><script src="js/solicitudes-storage.js"></script><script src="js/solicitud.js"></script>
+</body>
+</html>

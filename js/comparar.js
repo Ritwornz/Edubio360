@@ -151,6 +151,10 @@ function mostrarComparador() {
                         Quitar
                     </button>
 
+                    <a href="solicitud.html?oferta=${oferta.id}" class="boton boton-primario">
+                        Solicitar orientación
+                    </a>
+
                 </div>
 
             </article>

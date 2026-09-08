@@ -14,73 +14,111 @@ errorNombre.setAttribute("role", "alert");
 errorCorreo.setAttribute("role", "alert");
 errorComentario.setAttribute("role", "alert");
 
+function correoValido(valor) {
+    const expresion = /^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|duocuc\.cl|gmail\.com)$/i;
+    return expresion.test(valor);
+}
+
+function limpiarCampo(campo, error) {
+    campo.removeAttribute("aria-invalid");
+    error.textContent = "";
+}
+
 function mostrarError(campo, error, mensaje) {
     campo.setAttribute("aria-invalid", "true");
     error.textContent = mensaje;
 }
 
-function correoValido(valor) {
-    const expresion = /^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i;
+function validarNombreContacto() {
+    limpiarCampo(nombre, errorNombre);
 
-    return expresion.test(valor);
-}
+    const valor = nombre.value.trim();
 
-function validarContacto() {
-    let valido = true;
-
-    errorNombre.textContent = "";
-    errorCorreo.textContent = "";
-    errorComentario.textContent = "";
-    nombre.removeAttribute("aria-invalid");
-    correo.removeAttribute("aria-invalid");
-    comentario.removeAttribute("aria-invalid");
-
-    mensajeContacto.classList.add("oculto");
-
-    const valorNombre = nombre.value.trim();
-    const valorCorreo = correo.value.trim();
-    const valorComentario = comentario.value.trim();
-
-    if (valorNombre === "") {
+    if (valor === "") {
         mostrarError(nombre, errorNombre, "El nombre es obligatorio.");
-        valido = false;
-    } else if (valorNombre.length > 100) {
+        return false;
+    }
+
+    if (valor.length > 100) {
         mostrarError(nombre, errorNombre, "El nombre no puede superar los 100 caracteres.");
-        valido = false;
+        return false;
     }
 
-    if (valorCorreo.length > 100) {
-        mostrarError(correo, errorCorreo, "El correo no puede superar los 100 caracteres.");
-        valido = false;
-    } else if (
-        valorCorreo !== "" &&
-        !correoValido(valorCorreo)
-    ) {
-        mostrarError(correo, errorCorreo, "Ingrese un correo @duoc.cl, @profesor.duoc.cl o @gmail.com.");
-        valido = false;
-    }
-
-    if (valorComentario === "") {
-        mostrarError(comentario, errorComentario, "El comentario es obligatorio.");
-        valido = false;
-    } else if (valorComentario.length > 500) {
-        mostrarError(comentario, errorComentario, "El comentario no puede superar los 500 caracteres.");
-        valido = false;
-    }
-
-    if (!valido) {
-        formContacto.querySelector('[aria-invalid="true"]').focus();
-    }
-
-    return valido;
+    return true;
 }
+
+function validarCorreoContacto() {
+    limpiarCampo(correo, errorCorreo);
+
+    const valor = correo.value.trim();
+
+    if (valor === "") {
+        return true;
+    }
+
+    if (valor.length > 100) {
+        mostrarError(correo, errorCorreo, "El correo no puede superar los 100 caracteres.");
+        return false;
+    }
+
+    if (!correoValido(valor)) {
+        mostrarError(correo, errorCorreo, "Ingrese un correo @duoc.cl, @profesor.duoc.cl, @duocuc.cl o @gmail.com.");
+        return false;
+    }
+
+    return true;
+}
+
+function validarComentarioContacto() {
+    limpiarCampo(comentario, errorComentario);
+
+    const valor = comentario.value.trim();
+
+    if (valor === "") {
+        mostrarError(comentario, errorComentario, "El comentario es obligatorio.");
+        return false;
+    }
+
+    if (valor.length > 500) {
+        mostrarError(comentario, errorComentario, "El comentario no puede superar los 500 caracteres.");
+        return false;
+    }
+
+    return true;
+}
+
+nombre.addEventListener("input", function () {
+    mensajeContacto.classList.add("oculto");
+    validarNombreContacto();
+});
+
+correo.addEventListener("input", function () {
+    mensajeContacto.classList.add("oculto");
+    validarCorreoContacto();
+});
+
+comentario.addEventListener("input", function () {
+    mensajeContacto.classList.add("oculto");
+    validarComentarioContacto();
+});
 
 formContacto.addEventListener("submit", function (evento) {
     evento.preventDefault();
 
-    if (validarContacto()) {
-        mensajeContacto.classList.remove("oculto");
+    const nombreCorrecto = validarNombreContacto();
+    const correoCorrecto = validarCorreoContacto();
+    const comentarioCorrecto = validarComentarioContacto();
 
-        formContacto.reset();
+    if (!nombreCorrecto || !correoCorrecto || !comentarioCorrecto) {
+        const primerCampoInvalido = formContacto.querySelector('[aria-invalid="true"]');
+
+        if (primerCampoInvalido) {
+            primerCampoInvalido.focus();
+        }
+
+        return;
     }
+
+    mensajeContacto.classList.remove("oculto");
+    formContacto.reset();
 });

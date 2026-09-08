@@ -15,7 +15,7 @@ const descripcion = document.getElementById("descripcion");
 const mensajeOferta = document.getElementById("mensajeOferta");
 
 const camposOferta = [
-    { campo: codigo, nombre: "El código", maximo: 20, minimo: 3 },
+    { campo: codigo, nombre: "El código", minimo: 3 },
     { campo: carrera, nombre: "La carrera", maximo: 100 },
     { campo: institucion, nombre: "La institución", maximo: 150 },
     { campo: sede, nombre: "La sede", maximo: 100 },
@@ -25,7 +25,7 @@ const camposOferta = [
     { campo: duracion, nombre: "La duración", maximo: 50 },
     { campo: matricula, nombre: "La matrícula", numerico: true },
     { campo: arancel, nombre: "El arancel", numerico: true },
-    { campo: descripcion, nombre: "La descripción", maximo: 500 }
+    { campo: descripcion, nombre: "La descripción", maximo: 500, requerido: false }
 ];
 
 camposOferta.forEach(function (item) {
@@ -44,35 +44,60 @@ camposOferta.forEach(function (item) {
     item.error.setAttribute("role", "alert");
 });
 
+function validarCampoOferta(item) {
+    const valor = item.campo.value.trim();
+
+    item.campo.removeAttribute("aria-invalid");
+    item.error.textContent = "";
+
+    if (item.requerido !== false && valor === "") {
+        item.error.textContent = `${item.nombre} es un campo obligatorio.`;
+    } else if (valor !== "" && item.minimo && valor.length < item.minimo) {
+        item.error.textContent = `${item.nombre} debe tener al menos ${item.minimo} caracteres.`;
+    } else if (valor !== "" && item.maximo && valor.length > item.maximo) {
+        item.error.textContent = `${item.nombre} no puede superar los ${item.maximo} caracteres.`;
+    } else if (
+        valor !== "" &&
+        item.numerico &&
+        (!Number.isFinite(Number(valor)) || Number(valor) < 0)
+    ) {
+        item.error.textContent = `${item.nombre} debe ser un valor igual o mayor que cero.`;
+    }
+
+    if (item.error.textContent) {
+        item.campo.setAttribute("aria-invalid", "true");
+        return false;
+    }
+
+    return true;
+}
+
+camposOferta.forEach(function (item) {
+    const evento = item.campo.tagName === "SELECT" ? "change" : "input";
+
+    item.campo.addEventListener(evento, function () {
+        mensajeOferta.classList.add("oculto");
+        validarCampoOferta(item);
+    });
+});
+
 function validarOferta() {
     let valido = true;
 
     mensajeOferta.classList.add("oculto");
 
     camposOferta.forEach(function (item) {
-        const valor = item.campo.value.trim();
-
-        item.campo.removeAttribute("aria-invalid");
-        item.error.textContent = "";
-
-        if (valor === "") {
-            item.error.textContent = `${item.nombre} es un campo obligatorio.`;
-        } else if (item.minimo && valor.length < item.minimo) {
-            item.error.textContent = `${item.nombre} debe tener al menos ${item.minimo} caracteres.`;
-        } else if (item.maximo && valor.length > item.maximo) {
-            item.error.textContent = `${item.nombre} no puede superar los ${item.maximo} caracteres.`;
-        } else if (item.numerico && (!Number.isFinite(Number(valor)) || Number(valor) < 0)) {
-            item.error.textContent = `${item.nombre} debe ser un valor igual o mayor que cero.`;
-        }
-
-        if (item.error.textContent) {
-            item.campo.setAttribute("aria-invalid", "true");
+        if (!validarCampoOferta(item)) {
             valido = false;
         }
     });
 
     if (!valido) {
-        formOferta.querySelector('[aria-invalid="true"]').focus();
+        const primerCampoInvalido = formOferta.querySelector('[aria-invalid="true"]');
+
+        if (primerCampoInvalido) {
+            primerCampoInvalido.focus();
+        }
     }
 
     return valido;

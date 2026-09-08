@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>EduBío 360 | Editar usuario</title>
 
     <link rel="stylesheet" href="../css/variables.css">
@@ -14,27 +13,23 @@
     <link rel="stylesheet" href="../css/responsive.css">
 </head>
 
-<body class="admin-body">
+<body class="admin-body" data-rol="ADMINISTRADOR" data-login="../">
 
     <header class="navbar admin-navbar">
-
         <div class="navbar-contenido">
 
-            <a href="index.html" class="logo">
-                EduBío 360 ADMIN
-            </a>
+            <a href="index.html" class="logo">EduBío 360 ADMIN</a>
 
             <nav aria-label="Navegación administrativa">
                 <ul class="nav-links">
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="ofertas.html">Ofertas</a></li>
                     <li><a href="usuarios.html">Usuarios</a></li>
-                    <li><a href="../index.html">Volver al sitio</a></li>
+                    <li><a class="cerrar-sesion" href="../login.html">Cerrar sesión</a></li>
                 </ul>
             </nav>
 
         </div>
-
     </header>
 
     <main>
@@ -54,10 +49,7 @@
                     <form id="formUsuario" novalidate>
 
                         <div class="grupo-formulario">
-
-                            <label for="run" class="etiqueta">
-                                RUN
-                            </label>
+                            <label for="run" class="etiqueta">RUN</label>
 
                             <input
                                 type="text"
@@ -65,22 +57,15 @@
                                 name="run"
                                 class="campo"
                                 maxlength="9"
-                                aria-describedby="errorRun"
-                                value="123456785"
+                                placeholder="123456785"
+                                aria-describedby="errorRun" value="123456785"
                             >
 
-                            <small
-                                id="errorRun"
-                                class="mensaje-error"
-                            ></small>
-
+                            <small id="errorRun" class="mensaje-error"></small>
                         </div>
 
                         <div class="grupo-formulario">
-
-                            <label for="nombre" class="etiqueta">
-                                Nombre
-                            </label>
+                            <label for="nombre" class="etiqueta">Nombre</label>
 
                             <input
                                 type="text"
@@ -89,22 +74,14 @@
                                 class="campo"
                                 maxlength="50"
                                 autocomplete="given-name"
-                                aria-describedby="errorNombre"
-                                value="Usuario"
+                                aria-describedby="errorNombre" value="Usuario"
                             >
 
-                            <small
-                                id="errorNombre"
-                                class="mensaje-error"
-                            ></small>
-
+                            <small id="errorNombre" class="mensaje-error"></small>
                         </div>
 
                         <div class="grupo-formulario">
-
-                            <label for="apellidos" class="etiqueta">
-                                Apellidos
-                            </label>
+                            <label for="apellidos" class="etiqueta">Apellidos</label>
 
                             <input
                                 type="text"
@@ -113,22 +90,14 @@
                                 class="campo"
                                 maxlength="100"
                                 autocomplete="family-name"
-                                aria-describedby="errorApellidos"
-                                value="Ejemplo"
+                                aria-describedby="errorApellidos" value="Ejemplo"
                             >
 
-                            <small
-                                id="errorApellidos"
-                                class="mensaje-error"
-                            ></small>
-
+                            <small id="errorApellidos" class="mensaje-error"></small>
                         </div>
 
                         <div class="grupo-formulario">
-
-                            <label for="correo" class="etiqueta">
-                                Correo electrónico
-                            </label>
+                            <label for="correo" class="etiqueta">Correo electrónico</label>
 
                             <input
                                 type="email"
@@ -137,21 +106,15 @@
                                 class="campo"
                                 maxlength="100"
                                 autocomplete="email"
-                                aria-describedby="errorCorreo"
-                                value="usuario@gmail.com"
+                                aria-describedby="errorCorreo" value="usuario@gmail.com"
                             >
 
-                            <small
-                                id="errorCorreo"
-                                class="mensaje-error"
-                            ></small>
-
+                            <small id="errorCorreo" class="mensaje-error"></small>
                         </div>
 
                         <div class="grupo-formulario">
-
                             <label for="fechaNacimiento" class="etiqueta">
-                                Fecha de nacimiento
+                                Fecha de nacimiento (opcional)
                             </label>
 
                             <input
@@ -160,13 +123,13 @@
                                 name="fechaNacimiento"
                                 class="campo"
                                 autocomplete="bday"
-                                value="2000-05-15"
+                                aria-describedby="errorFechaNacimiento" value="2000-05-15"
                             >
 
+                            <small id="errorFechaNacimiento" class="mensaje-error"></small>
                         </div>
 
                         <div class="grupo-formulario">
-
                             <label for="tipoUsuario" class="etiqueta">
                                 Tipo de usuario
                             </label>
@@ -177,34 +140,17 @@
                                 class="campo"
                                 aria-describedby="errorTipoUsuario"
                             >
-                                <option value="">
-                                    Seleccione
-                                </option>
-
-                                <option
-                                    value="ESTUDIANTE"
-                                    selected
-                                >
-                                    Estudiante
-                                </option>
-
-                                <option value="ADMINISTRADOR">
-                                    Administrador
-                                </option>
+                                <option value="">Seleccione</option>
+                                <option value="ESTUDIANTE" selected>Estudiante</option>
+                                <option value="ORIENTADOR">Orientador</option>
+                                <option value="ADMINISTRADOR">Administrador</option>
                             </select>
 
-                            <small
-                                id="errorTipoUsuario"
-                                class="mensaje-error"
-                            ></small>
-
+                            <small id="errorTipoUsuario" class="mensaje-error"></small>
                         </div>
 
                         <div class="grupo-formulario">
-
-                            <label for="region" class="etiqueta">
-                                Región
-                            </label>
+                            <label for="region" class="etiqueta">Región</label>
 
                             <select
                                 id="region"
@@ -212,23 +158,14 @@
                                 class="campo"
                                 aria-describedby="errorRegion"
                             >
-                                <option value="">
-                                    Seleccione una región
-                                </option>
+                                <option value="">Seleccione una región</option>
                             </select>
 
-                            <small
-                                id="errorRegion"
-                                class="mensaje-error"
-                            ></small>
-
+                            <small id="errorRegion" class="mensaje-error"></small>
                         </div>
 
                         <div class="grupo-formulario">
-
-                            <label for="comuna" class="etiqueta">
-                                Comuna
-                            </label>
+                            <label for="comuna" class="etiqueta">Comuna</label>
 
                             <select
                                 id="comuna"
@@ -237,23 +174,14 @@
                                 aria-describedby="errorComuna"
                                 disabled
                             >
-                                <option value="">
-                                    Seleccione una comuna
-                                </option>
+                                <option value="">Seleccione una comuna</option>
                             </select>
 
-                            <small
-                                id="errorComuna"
-                                class="mensaje-error"
-                            ></small>
-
+                            <small id="errorComuna" class="mensaje-error"></small>
                         </div>
 
                         <div class="grupo-formulario">
-
-                            <label for="direccion" class="etiqueta">
-                                Dirección
-                            </label>
+                            <label for="direccion" class="etiqueta">Dirección</label>
 
                             <input
                                 type="text"
@@ -262,28 +190,17 @@
                                 class="campo"
                                 maxlength="300"
                                 autocomplete="address-line1"
-                                aria-describedby="errorDireccion"
-                                value="Calle de ejemplo 123"
+                                aria-describedby="errorDireccion" value="Calle de ejemplo 123"
                             >
 
-                            <small
-                                id="errorDireccion"
-                                class="mensaje-error"
-                            ></small>
-
+                            <small id="errorDireccion" class="mensaje-error"></small>
                         </div>
 
-                        <button
-                            type="submit"
-                            class="boton boton-primario"
-                        >
+                        <button type="submit" class="boton boton-primario">
                             Actualizar usuario
                         </button>
 
-                        <a
-                            href="usuarios.html"
-                            class="boton boton-claro"
-                        >
+                        <a href="usuarios.html" class="boton boton-claro">
                             Cancelar
                         </a>
 
@@ -305,18 +222,18 @@
 
     </main>
 
+    <script src="../js/auth.js"></script>
+    <script src="../js/usuarios-storage.js"></script>
     <script src="../js/regiones.js"></script>
     <script src="../js/usuario.js"></script>
 
     <script>
-        const indiceBiobio = regiones.findIndex(function (region) {
-            return region.nombre === "Biobío";
+        const indiceBiobio = regiones.findIndex(function (item) {
+            return item.nombre === "Biobío";
         });
 
         region.value = indiceBiobio;
-
         cargarComunas();
-
         comuna.value = "Concepción";
     </script>
 
