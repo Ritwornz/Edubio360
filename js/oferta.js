@@ -122,6 +122,7 @@ function guardarConImagen(imagenGuardada) {
     guardarOfertas(lista);
     ofertas = lista;
     mensajeOferta.classList.remove("oculto");
+    sessionStorage.setItem("confirmacionEduBio", mensajeOferta.textContent);
     setTimeout(function () { window.location.href = "ofertas.html"; }, 500);
 }
 

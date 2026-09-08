@@ -67,13 +67,13 @@ formSolicitud.addEventListener("submit", function (evento) {
     });
 
     const correo = document.getElementById("correoSolicitud");
-    if (correo.value && !/^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|duocuc\.cl|gmail\.com)$/i.test(correo.value.trim())) {
+    if (correo.value && !/^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i.test(correo.value.trim())) {
         marcarError(correo, "Ingrese un correo permitido.");
         valido = false;
     }
 
     const fecha = document.getElementById("fechaPreferida");
-    const hoy = new Date().toISOString().slice(0, 10);
+    const hoy = fechaLocalHoy();
     if (fecha.value && fecha.value < hoy) {
         marcarError(fecha, "Seleccione una fecha desde hoy en adelante.");
         valido = false;
@@ -87,8 +87,9 @@ formSolicitud.addEventListener("submit", function (evento) {
     const oferta = ofertas.find(function (item) { return item.id === Number(selectOferta.value); });
     const comparadas = ofertasComparadas.length >= 2 ? ofertasComparadas : [oferta];
     const solicitudes = obtenerSolicitudes();
+    const id = Date.now();
     solicitudes.push({
-        id: Date.now(),
+        id,
         estudiante: document.getElementById("nombreSolicitud").value.trim(),
         correo: correo.value.trim().toLowerCase(),
         oferta: oferta.grupoComparacion,
@@ -103,6 +104,9 @@ formSolicitud.addEventListener("submit", function (evento) {
         historial: [{ estado: "PENDIENTE", fecha: new Date().toISOString() }]
     });
     guardarSolicitudes(solicitudes);
+    crearNotificacion(sesionSolicitud.correo, "Tu solicitud fue recibida y está pendiente de asignación.", id);
+    sessionStorage.setItem("confirmacionEduBio", "Solicitud enviada. Aquí puedes consultar su estado y todos sus cambios.");
+    formSolicitud.querySelector('button[type="submit"]').disabled = true;
     mensajeSolicitud.classList.remove("oculto");
     setTimeout(function () { window.location.href = "estudiante/solicitudes.html"; }, 650);
 });

@@ -1,5 +1,5 @@
 const idSolicitud = Number(new URLSearchParams(window.location.search).get("id"));
-const solicitud = buscarSolicitud(idSolicitud);
+let solicitud = buscarSolicitud(idSolicitud);
 const detalleSolicitud = document.getElementById("detalleSolicitud");
 const sesionDetalle = obtenerSesion();
 
@@ -35,7 +35,7 @@ if (!solicitud || solicitud.orientador !== sesionDetalle?.correo) {
         document.getElementById("fecha").removeAttribute("aria-invalid");
         document.getElementById("resultado").removeAttribute("aria-invalid");
 
-        const hoy = new Date().toISOString().slice(0, 10);
+        const hoy = fechaLocalHoy();
         if (["ACEPTADA", "REPROGRAMADA"].includes(estado) && (!fecha || fecha < hoy)) {
             errorFecha.textContent = "Seleccione una fecha desde hoy en adelante.";
             document.getElementById("fecha").setAttribute("aria-invalid", "true");
@@ -47,8 +47,22 @@ if (!solicitud || solicitud.orientador !== sesionDetalle?.correo) {
             return;
         }
 
-        actualizarSolicitud(idSolicitud, { estado, fecha, resultado, observacion: document.getElementById("observacion").value.trim() });
-        crearNotificacion(solicitud.correo, `Tu solicitud fue ${estado.toLowerCase()}.`);
+        const actualizada = actualizarSolicitud(idSolicitud, { estado, fecha, resultado, observacion: document.getElementById("observacion").value.trim() });
+        if (!actualizada) {
+            mostrarConfirmacion("No se pudo guardar. La solicitud cambió o ya fue finalizada. Vuelve al listado para consultar su estado.");
+            return;
+        }
+        solicitud = actualizada;
+        detalleSolicitud.querySelector(".badge").textContent = actualizada.estado;
+        document.getElementById("mensajeGestion").textContent = "Cambios guardados. El estudiante puede consultar el estado y su notificación.";
         document.getElementById("mensajeGestion").classList.remove("oculto");
+        if (["ATENDIDA", "CANCELADA"].includes(actualizada.estado)) bloquearGestion();
     });
+    function bloquearGestion() {
+        document.querySelectorAll("#formGestion input, #formGestion select, #formGestion textarea, #formGestion button").forEach(function (campo) { campo.disabled = true; });
+    }
+    if (["ATENDIDA", "CANCELADA"].includes(solicitud.estado)) {
+        bloquearGestion();
+        mostrarConfirmacion("Orientación finalizada. El resultado y las observaciones están disponibles para el estudiante.");
+    }
 }

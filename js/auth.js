@@ -1,9 +1,25 @@
 const CLAVE_SESION = "sesionEduBio";
 const CLAVE_RETORNO = "retornoEduBio";
 
+function normalizarCorreoUsuario(correo) {
+    const valor = String(correo || "").trim().toLowerCase();
+    return /^(estudiante|orientador|admin)@duocuc\.cl$/.test(valor) ? valor.replace("@duocuc.cl", "@duoc.cl") : valor;
+}
+
 function obtenerSesion() {
     try {
-        return JSON.parse(sessionStorage.getItem(CLAVE_SESION));
+        const sesion = JSON.parse(sessionStorage.getItem(CLAVE_SESION));
+        if (!sesion?.correo || !["ESTUDIANTE", "ORIENTADOR", "ADMINISTRADOR"].includes(sesion.rol)) return null;
+        const correo = normalizarCorreoUsuario(sesion.correo);
+        const usuarios = JSON.parse(localStorage.getItem("usuariosEduBio") || "null");
+        const usuario = Array.isArray(usuarios) ? usuarios.find(function (item) { return normalizarCorreoUsuario(item.correo) === correo; }) : null;
+        if (Array.isArray(usuarios) && (!usuario || usuario.estado === "INACTIVO")) {
+            sessionStorage.removeItem(CLAVE_SESION);
+            return null;
+        }
+        const actualizada = { ...sesion, correo, rol: usuario?.rol || sesion.rol };
+        if (JSON.stringify(sesion) !== JSON.stringify(actualizada)) sessionStorage.setItem(CLAVE_SESION, JSON.stringify(actualizada));
+        return actualizada;
     } catch {
         return null;
     }
@@ -126,10 +142,45 @@ function actualizarContadorSeleccion() {
     });
 }
 
+function mostrarConfirmacion(texto) {
+    const contenedor = document.querySelector("main .contenedor") || document.querySelector("main");
+    if (!contenedor) return;
+    let mensaje = document.getElementById("confirmacionAccion");
+    if (!mensaje) {
+        mensaje = document.createElement("p");
+        mensaje.id = "confirmacionAccion";
+        mensaje.className = "mensaje-exito";
+        mensaje.setAttribute("role", "status");
+        contenedor.prepend(mensaje);
+    }
+    mensaje.textContent = texto;
+}
+
+function enlazarEstadistica(id, destino) {
+    const tarjeta = document.getElementById(id)?.closest(".tarjeta");
+    if (!tarjeta || tarjeta.tagName === "A") return;
+    const enlace = document.createElement("a");
+    enlace.href = destino;
+    enlace.className = `${tarjeta.className} tarjeta-enlace`;
+    while (tarjeta.firstChild) enlace.appendChild(tarjeta.firstChild);
+    tarjeta.replaceWith(enlace);
+}
+
 if (protegerPagina()) {
     cargarAjustesVisuales();
     ajustarNavegacionPublica();
     prepararMenuMovil();
     activarCierreSesion();
     actualizarContadorSeleccion();
+    const confirmacion = sessionStorage.getItem("confirmacionEduBio");
+    if (confirmacion) {
+        sessionStorage.removeItem("confirmacionEduBio");
+        mostrarConfirmacion(confirmacion);
+    }
 }
+
+window.addEventListener("storage", function (evento) {
+    if (evento.key === "usuariosEduBio" || evento.key === null) protegerPagina();
+    if (evento.key === "comparadorEduBio" || evento.key === null) actualizarContadorSeleccion();
+});
+window.addEventListener("focus", protegerPagina);

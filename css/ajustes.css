@@ -236,3 +236,19 @@
         height: 360px;
     }
 }
+
+.tarjeta-enlace {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    transition: box-shadow 150ms, border-color 150ms;
+}
+.tarjeta-enlace:hover, .tarjeta-enlace:focus-visible {
+    border-color: var(--negro);
+    box-shadow: var(--sombra-md);
+    outline: 2px solid var(--amarillo);
+    outline-offset: 3px;
+}
+#filtrosSolicitudes, #filtrosUsuarios, #confirmacionAccion {
+    margin-bottom: var(--espacio-lg);
+}

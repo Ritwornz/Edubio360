@@ -20,6 +20,7 @@ function eliminarOfertaAdmin(id) {
         if (Array.isArray(seleccion)) localStorage.setItem("comparadorEduBio", JSON.stringify(seleccion.filter(function (seleccionada) { return Number(seleccionada) !== id; })));
     } catch {}
     renderizarOfertasAdmin();
+    mostrarConfirmacion("Oferta eliminada. Las solicitudes anteriores conservan su historial.");
 }
 
 function renderizarOfertasAdmin() {
