@@ -10,7 +10,7 @@ const ofertas = [
         duracion: "8 semestres",
         matricula: 180000,
         arancel: 3200000,
-        imagen: "https://placehold.co/600x400/FFC400/171717?text=Ingenieria+Informatica"
+        imagen: "img/ofertas/ingenieria-informatica.jpg"
     },
     {
         id: 2,
@@ -23,7 +23,7 @@ const ofertas = [
         duracion: "8 semestres",
         matricula: 160000,
         arancel: 2900000,
-        imagen: "https://placehold.co/600x400/FFC400/171717?text=Administracion"
+        imagen: "img/ofertas/ingenieria-administracion.jpg"
     },
     {
         id: 3,
@@ -36,7 +36,7 @@ const ofertas = [
         duracion: "10 semestres",
         matricula: 200000,
         arancel: 4100000,
-        imagen: "https://placehold.co/600x400/FFC400/171717?text=Enfermeria"
+        imagen: "img/ofertas/enfermeria.jpg"
     },
     {
         id: 4,
@@ -49,7 +49,7 @@ const ofertas = [
         duracion: "5 semestres",
         matricula: 120000,
         arancel: 2100000,
-        imagen: "https://placehold.co/600x400/FFC400/171717?text=Programacion"
+        imagen: "img/ofertas/tecnico-programacion.jpg"
     },
     {
         id: 5,
@@ -62,7 +62,7 @@ const ofertas = [
         duracion: "8 semestres",
         matricula: 150000,
         arancel: 2800000,
-        imagen: "https://placehold.co/600x400/FFC400/171717?text=Diseno+Grafico"
+        imagen: "img/ofertas/diseno-grafico.jpg"
     },
     {
         id: 6,
@@ -75,7 +75,7 @@ const ofertas = [
         duracion: "10 semestres",
         matricula: 170000,
         arancel: 3000000,
-        imagen: "https://placehold.co/600x400/FFC400/171717?text=Trabajo+Social"
+        imagen: "img/ofertas/trabajo-social.jpg"
     },
     {
         id: 7,
@@ -88,7 +88,7 @@ const ofertas = [
         duracion: "5 semestres",
         matricula: 110000,
         arancel: 1950000,
-        imagen: "https://placehold.co/600x400/FFC400/171717?text=Electricidad"
+        imagen: "img/ofertas/tecnico-electricidad.jpg"
     },
     {
         id: 8,
@@ -101,6 +101,6 @@ const ofertas = [
         duracion: "10 semestres",
         matricula: 180000,
         arancel: 3300000,
-        imagen: "https://placehold.co/600x400/FFC400/171717?text=Pedagogia"
+        imagen: "img/ofertas/pedagogia-basica.jpg"
     }
 ];
