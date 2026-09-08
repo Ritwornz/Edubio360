@@ -30,7 +30,7 @@ const camposUsuario = [run, nombre, apellidos, correo, fechaNacimiento, tipoUsua
 });
 
 function correoValido(valor) {
-    return /^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|duocuc\.cl|gmail\.com)$/i.test(valor);
+    return /^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i.test(valor);
 }
 
 function validarRun(valor) {
@@ -77,7 +77,7 @@ function validarCampo(item) {
     if (campo === correo) {
         if (!valor) return mostrarError(item, "El correo es obligatorio.");
         if (valor.length > 100) return mostrarError(item, "El correo no puede superar los 100 caracteres.");
-        if (!correoValido(valor)) return mostrarError(item, "Ingrese un correo @duoc.cl, @profesor.duoc.cl, @duocuc.cl o @gmail.com.");
+        if (!correoValido(valor)) return mostrarError(item, "Ingrese un correo @duoc.cl, @profesor.duoc.cl o @gmail.com.");
         const repetido = obtenerUsuarios().some(function (usuario) {
             return usuario.correo === valor.toLowerCase() && usuario.correo !== String(correoEdicion || "").toLowerCase();
         });

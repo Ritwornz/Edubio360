@@ -12,9 +12,9 @@ Abrir la carpeta con Visual Studio Code y ejecutar `index.html` mediante Live Se
 
 ## Accesos de demostración
 
-- Estudiante: `estudiante@duocuc.cl` / `1234`
-- Orientador: `orientador@duocuc.cl` / `1234`
-- Administrador: `admin@duocuc.cl` / `1234`
+- Estudiante: `estudiante@duoc.cl` / `1234`
+- Orientador: `orientador@duoc.cl` / `1234`
+- Administrador: `admin@duoc.cl` / `1234`
 
 ## Flujo principal
 

@@ -1,6 +1,6 @@
 const CLAVE_OFERTAS = "ofertasEduBio";
 const CLAVE_VERSION_OFERTAS = "versionOfertasEduBio";
-const VERSION_OFERTAS = "5";
+const VERSION_OFERTAS = "6";
 
 const OFERTAS_BASE = [
     { id: 1, codigo: "OF-001", carrera: "Ingeniería en Informática", grupoComparacion: "Ingeniería en Informática", institucion: "IP DUOC UC", sede: "Concepción", area: "Tecnología", modalidad: "Presencial", jornada: "Diurno", duracion: "8 semestres", matricula: 216000, arancel: 2190000, imagen: "img/ofertas/oferta-01-informatica-duoc.jpg" },
@@ -24,10 +24,20 @@ const OFERTAS_BASE = [
     { id: 19, codigo: "OF-019", carrera: "Técnico en Automatización y Control Industrial", grupoComparacion: "Automatización", institucion: "IP AIEP", sede: "Concepción", area: "Tecnología", modalidad: "Presencial", jornada: "Vespertino", duracion: "5 semestres", matricula: 190000, arancel: 1840000, imagen: "img/ofertas/oferta-19-automatizacion-aiep.jpg" },
     { id: 20, codigo: "OF-020", carrera: "Técnico en Automatización y Robótica", grupoComparacion: "Automatización", institucion: "CFT INACAP", sede: "San Pedro de la Paz", area: "Tecnología", modalidad: "Presencial", jornada: "Diurno", duracion: "4 semestres", matricula: 220000, arancel: 2214000, imagen: "img/ofertas/oferta-20-robotica-inacap.jpg" },
     { id: 21, codigo: "OF-021", carrera: "Técnico Universitario en Automatización y Control", grupoComparacion: "Automatización", institucion: "Universidad Técnica Federico Santa María", sede: "Hualpén", area: "Tecnología", modalidad: "Presencial", jornada: "Diurno", duracion: "5 semestres", matricula: 186000, arancel: 2150000, imagen: "img/ofertas/oferta-21-automatizacion-usm.jpg" }
-];
+].map(function (oferta, indice) {
+    return { ...oferta, cupos: [8, 24, 36, 12, 30][indice % 5], cupoCritico: 10 };
+});
 
 function copiarOfertas(lista) {
-    return lista.map(function (oferta) { return { ...oferta }; });
+    return lista.map(function (oferta, indice) {
+        const cupos = Number(oferta.cupos);
+        const cupoCritico = oferta.cupoCritico === null || oferta.cupoCritico === "" ? null : Number(oferta.cupoCritico);
+        return {
+            ...oferta,
+            cupos: Number.isInteger(cupos) && cupos >= 0 ? cupos : [8, 24, 36, 12, 30][indice % 5],
+            cupoCritico: cupoCritico === null || Number.isInteger(cupoCritico) && cupoCritico >= 0 ? cupoCritico : 10
+        };
+    });
 }
 
 function guardarOfertas(lista) {
@@ -36,14 +46,13 @@ function guardarOfertas(lista) {
 }
 
 function obtenerOfertas() {
-    if (localStorage.getItem(CLAVE_VERSION_OFERTAS) !== VERSION_OFERTAS) {
-        const base = copiarOfertas(OFERTAS_BASE);
-        guardarOfertas(base);
-        return base;
-    }
     try {
         const guardadas = JSON.parse(localStorage.getItem(CLAVE_OFERTAS));
-        if (Array.isArray(guardadas) && guardadas.length) return guardadas;
+        if (Array.isArray(guardadas)) {
+            const normalizadas = copiarOfertas(guardadas);
+            if (localStorage.getItem(CLAVE_VERSION_OFERTAS) !== VERSION_OFERTAS) guardarOfertas(normalizadas);
+            return normalizadas;
+        }
     } catch {}
     const base = copiarOfertas(OFERTAS_BASE);
     guardarOfertas(base);

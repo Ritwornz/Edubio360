@@ -5,7 +5,7 @@ const filtroSede = document.getElementById("filtroSede");
 const cantidadResultados = document.getElementById("cantidadResultados");
 
 function formatearPrecio(valor) {
-    return Number(valor).toLocaleString("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+    return Number(valor).toLocaleString("es-CL", { style: "currency", currency: "CLP", minimumFractionDigits: Number(valor) % 1 ? 2 : 0, maximumFractionDigits: 2 });
 }
 
 function cargarFiltros() {
@@ -96,9 +96,11 @@ function mostrarOfertas() {
                     <p><strong>Jornada:</strong> ${oferta.jornada}</p>
                     <p><strong>Duración:</strong> ${oferta.duracion}</p>
                     <p><strong>Arancel:</strong> ${formatearPrecio(oferta.arancel)}</p>
+                    <p><strong>Cupos disponibles:</strong> ${oferta.cupos}</p>
+                    ${oferta.cupoCritico !== null && oferta.cupos <= oferta.cupoCritico ? '<p class="alerta-cupos" role="status">Últimos cupos disponibles</p>' : ""}
                     <div class="oferta-acciones">
                         <a href="detalle.html?id=${oferta.id}" class="boton boton-claro">Ver detalle</a>
-                        <button type="button" class="boton boton-primario agregar-comparador" data-id="${oferta.id}">Agregar a comparar</button>
+                        <button type="button" class="boton boton-primario agregar-comparador" data-id="${oferta.id}">Agregar a mi selección</button>
                     </div>
                 </div>
             </article>

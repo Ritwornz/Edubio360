@@ -114,9 +114,22 @@ function activarCierreSesion() {
     });
 }
 
+function actualizarContadorSeleccion() {
+    let cantidad = 0;
+    try {
+        const seleccion = JSON.parse(localStorage.getItem("comparadorEduBio"));
+        cantidad = Array.isArray(seleccion) ? seleccion.length : 0;
+    } catch {}
+    document.querySelectorAll('a[href$="comparar.html"]').forEach(function (enlace) {
+        enlace.textContent = `Mi selección (${cantidad})`;
+        enlace.setAttribute("aria-label", `Mi selección, ${cantidad} oferta${cantidad === 1 ? "" : "s"}`);
+    });
+}
+
 if (protegerPagina()) {
     cargarAjustesVisuales();
     ajustarNavegacionPublica();
     prepararMenuMovil();
     activarCierreSesion();
+    actualizarContadorSeleccion();
 }

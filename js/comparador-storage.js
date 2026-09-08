@@ -17,6 +17,7 @@ function obtenerIdsComparador() {
 
 function guardarIdsComparador(ids) {
     localStorage.setItem(CLAVE_COMPARADOR, JSON.stringify(ids));
+    if (typeof actualizarContadorSeleccion === "function") actualizarContadorSeleccion();
 }
 
 function obtenerErrorComparador() {

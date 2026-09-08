@@ -5,7 +5,7 @@ const destacadas = gruposDestacados.map(function (grupo) {
 }).filter(Boolean);
 
 function precioHome(valor) {
-    return Number(valor).toLocaleString("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+    return Number(valor).toLocaleString("es-CL", { style: "currency", currency: "CLP", minimumFractionDigits: Number(valor) % 1 ? 2 : 0, maximumFractionDigits: 2 });
 }
 
 contenedorDestacadas.innerHTML = destacadas.map(function (oferta) {

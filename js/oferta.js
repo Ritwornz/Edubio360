@@ -9,6 +9,8 @@ const jornada = document.getElementById("jornada");
 const duracion = document.getElementById("duracion");
 const matricula = document.getElementById("matricula");
 const arancel = document.getElementById("arancel");
+const cupos = document.getElementById("cupos");
+const cupoCritico = document.getElementById("cupoCritico");
 const descripcion = document.getElementById("descripcion");
 const imagen = document.getElementById("imagen");
 const mensajeOferta = document.getElementById("mensajeOferta");
@@ -26,6 +28,8 @@ const camposOferta = [
     { campo: duracion, nombre: "La duración", maximo: 50 },
     { campo: matricula, nombre: "La matrícula", numerico: true },
     { campo: arancel, nombre: "El arancel", numerico: true },
+    { campo: cupos, nombre: "Los cupos disponibles", numerico: true, entero: true },
+    { campo: cupoCritico, nombre: "Los cupos críticos", numerico: true, entero: true, requerido: false },
     { campo: descripcion, nombre: "La descripción", maximo: 500, requerido: false }
 ];
 
@@ -54,6 +58,7 @@ function validarCampoOferta(item) {
     else if (valor && item.minimo && valor.length < item.minimo) item.error.textContent = `${item.nombre} debe tener al menos ${item.minimo} caracteres.`;
     else if (valor && item.maximo && valor.length > item.maximo) item.error.textContent = `${item.nombre} no puede superar los ${item.maximo} caracteres.`;
     else if (valor && item.numerico && (!Number.isFinite(Number(valor)) || Number(valor) < 0)) item.error.textContent = `${item.nombre} debe ser un valor igual o mayor que cero.`;
+    else if (valor && item.entero && !Number.isInteger(Number(valor))) item.error.textContent = `${item.nombre} debe ser un número entero.`;
 
     if (item.error.textContent) {
         item.campo.setAttribute("aria-invalid", "true");
@@ -98,6 +103,8 @@ function guardarConImagen(imagenGuardada) {
         duracion: duracion.value.trim(),
         matricula: Number(matricula.value),
         arancel: Number(arancel.value),
+        cupos: Number(cupos.value),
+        cupoCritico: cupoCritico.value === "" ? null : Number(cupoCritico.value),
         descripcion: descripcion.value.trim(),
         imagen: imagenGuardada
     };
@@ -155,6 +162,8 @@ function cargarEdicion() {
     duracion.value = ofertaEdicion.duracion || "";
     matricula.value = ofertaEdicion.matricula ?? "";
     arancel.value = ofertaEdicion.arancel ?? "";
+    cupos.value = ofertaEdicion.cupos ?? "";
+    cupoCritico.value = ofertaEdicion.cupoCritico ?? "";
     descripcion.value = ofertaEdicion.descripcion || "";
 }
 

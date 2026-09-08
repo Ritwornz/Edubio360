@@ -431,6 +431,12 @@ textarea.campo {
     border: 0;
 }
 
+.alerta-cupos {
+    display: inline-block;
+    color: var(--error);
+    font-weight: 700;
+}
+
 .video-alternativo {
     position: absolute;
     inset: 0;

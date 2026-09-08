@@ -12,7 +12,7 @@ const mensajeContacto = document.getElementById("mensajeContacto");
 });
 
 function correoValido(valor) {
-    return /^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|duocuc\.cl|gmail\.com)$/i.test(valor);
+    return /^[A-Z0-9._%+-]+@(duoc\.cl|profesor\.duoc\.cl|gmail\.com)$/i.test(valor);
 }
 
 function limpiarCampo(campo, error) {
@@ -48,7 +48,7 @@ function validarCorreoContacto() {
         return false;
     }
     if (!correoValido(valor)) {
-        mostrarError(correo, errorCorreo, "Ingrese un correo @duoc.cl, @profesor.duoc.cl, @duocuc.cl o @gmail.com.");
+        mostrarError(correo, errorCorreo, "Ingrese un correo @duoc.cl, @profesor.duoc.cl o @gmail.com.");
         return false;
     }
     return true;

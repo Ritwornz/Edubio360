@@ -1,10 +1,10 @@
 const CLAVE_USUARIOS = "usuariosEduBio";
 const CLAVE_VERSION_USUARIOS = "versionUsuariosEduBio";
-const VERSION_USUARIOS = "3";
+const VERSION_USUARIOS = "4";
 const USUARIOS_DEMO = [
-    { nombre: "Estudiante", apellidos: "Demo", correo: "estudiante@duocuc.cl", run: "123456785", region: "Biobío", comuna: "Concepción", direccion: "Concepción", rol: "ESTUDIANTE", estado: "ACTIVO" },
-    { nombre: "Orientador", apellidos: "Demo", correo: "orientador@duocuc.cl", run: "111111111", region: "Biobío", comuna: "Talcahuano", direccion: "Talcahuano", rol: "ORIENTADOR", estado: "ACTIVO" },
-    { nombre: "Administrador", apellidos: "Demo", correo: "admin@duocuc.cl", run: "222222222", region: "Biobío", comuna: "Concepción", direccion: "Concepción", rol: "ADMINISTRADOR", estado: "ACTIVO" }
+    { nombre: "Estudiante", apellidos: "Demo", correo: "estudiante@duoc.cl", run: "123456785", region: "Biobío", comuna: "Concepción", direccion: "Concepción", rol: "ESTUDIANTE", estado: "ACTIVO" },
+    { nombre: "Orientador", apellidos: "Demo", correo: "orientador@duoc.cl", run: "111111111", region: "Biobío", comuna: "Talcahuano", direccion: "Talcahuano", rol: "ORIENTADOR", estado: "ACTIVO" },
+    { nombre: "Administrador", apellidos: "Demo", correo: "admin@duoc.cl", run: "222222222", region: "Biobío", comuna: "Concepción", direccion: "Concepción", rol: "ADMINISTRADOR", estado: "ACTIVO" }
 ];
 
 function normalizarUsuario(usuario) {
@@ -29,15 +29,20 @@ function guardarUsuarios(usuarios) {
 }
 
 function obtenerUsuarios() {
-    if (localStorage.getItem(CLAVE_VERSION_USUARIOS) !== VERSION_USUARIOS) {
-        const base = USUARIOS_DEMO.map(function (usuario) { return { ...usuario }; });
-        guardarUsuarios(base);
-        return base;
-    }
-
     try {
         const usuarios = JSON.parse(localStorage.getItem(CLAVE_USUARIOS));
-        if (Array.isArray(usuarios)) return usuarios.map(normalizarUsuario);
+        if (Array.isArray(usuarios)) {
+            const correosDemo = {
+                "estudiante@duocuc.cl": "estudiante@duoc.cl",
+                "orientador@duocuc.cl": "orientador@duoc.cl",
+                "admin@duocuc.cl": "admin@duoc.cl"
+            };
+            const normalizados = usuarios.map(function (usuario) {
+                return normalizarUsuario({ ...usuario, correo: correosDemo[usuario.correo] || usuario.correo });
+            });
+            if (localStorage.getItem(CLAVE_VERSION_USUARIOS) !== VERSION_USUARIOS) guardarUsuarios(normalizados);
+            return normalizados;
+        }
     } catch {}
 
     const base = USUARIOS_DEMO.map(function (usuario) { return { ...usuario }; });

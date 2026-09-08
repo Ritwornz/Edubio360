@@ -9,7 +9,7 @@ function obtenerComparador() {
 }
 
 function formatearPrecio(valor) {
-    return Number(valor).toLocaleString("es-CL", { style: "currency", currency: "CLP", maximumFractionDigits: 0 });
+    return Number(valor).toLocaleString("es-CL", { style: "currency", currency: "CLP", minimumFractionDigits: Number(valor) % 1 ? 2 : 0, maximumFractionDigits: 2 });
 }
 
 function duracionNumerica(oferta) {
@@ -127,6 +127,7 @@ function mostrarComparador() {
         <tr><th>Duración</th>${comparador.map(function (oferta) { return `<td class="${duracionNumerica(oferta) === menorDuracion ? "mejor-dato" : ""}">${oferta.duracion}</td>`; }).join("")}</tr>
         <tr><th>Matrícula</th>${comparador.map(function (oferta) { return `<td class="${Number(oferta.matricula) === menorMatricula ? "mejor-dato" : ""}">${formatearPrecio(oferta.matricula)}</td>`; }).join("")}</tr>
         <tr><th>Arancel</th>${comparador.map(function (oferta) { return `<td class="${Number(oferta.arancel) === menorArancel ? "mejor-dato" : ""}">${formatearPrecio(oferta.arancel)}</td>`; }).join("")}</tr>
+        <tr><th>Cupos disponibles</th>${comparador.map(function (oferta) { return `<td>${oferta.cupos}${oferta.cupoCritico !== null && oferta.cupos <= oferta.cupoCritico ? '<br><span class="alerta-cupos">Últimos cupos</span>' : ""}</td>`; }).join("")}</tr>
         <tr><th>Acciones</th>${comparador.map(function (oferta) { return `<td><a href="detalle.html?id=${oferta.id}" class="boton boton-claro">Ver detalle</a><button type="button" class="boton boton-secundario quitar-comparador" data-id="${oferta.id}">Quitar</button></td>`; }).join("")}</tr>
     </tbody></table></div>`;
 
