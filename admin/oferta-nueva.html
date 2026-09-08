@@ -1,165 +1,28 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>EduBío 360 | Nueva oferta</title>
-
-    <link rel="stylesheet" href="../css/variables.css">
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/componentes.css">
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EduBío 360 | Nueva oferta</title>
+    <link rel="stylesheet" href="../css/variables.css"><link rel="stylesheet" href="../css/global.css"><link rel="stylesheet" href="../css/componentes.css"><link rel="stylesheet" href="../css/admin.css"><link rel="stylesheet" href="../css/responsive.css"><link rel="stylesheet" href="../css/ajustes.css">
 </head>
-
 <body class="admin-body" data-rol="ADMINISTRADOR" data-login="../">
-
-    <header class="navbar admin-navbar">
-
-        <div class="navbar-contenido">
-
-            <a href="index.html" class="logo">
-                EduBío 360 ADMIN
-            </a>
-
-            <nav aria-label="Navegación administrativa">
-                <ul class="nav-links">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="ofertas.html">Ofertas</a></li>
-                    <li><a href="usuarios.html">Usuarios</a></li>
-                    <li><a class="cerrar-sesion" href="../login.html">Cerrar sesión</a></li>
-                </ul>
-            </nav>
-
-        </div>
-
-    </header>
-
-    <main>
-
-        <section class="seccion">
-
-            <div class="contenedor admin-formulario">
-
-                <div class="tarjeta formulario-tarjeta">
-
-                    <h1>Nueva oferta académica</h1>
-
-                    <form id="formOferta" novalidate>
-
-                        <div class="grupo-formulario">
-                            <label for="codigo" class="etiqueta">Código</label>
-                            <input type="text" id="codigo" name="codigo" class="campo" minlength="3" maxlength="20">
-                            <small id="errorCodigo" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="carrera" class="etiqueta">Carrera</label>
-                            <input type="text" id="carrera" name="carrera" class="campo" maxlength="100">
-                            <small id="errorCarrera" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="institucion" class="etiqueta">Institución</label>
-                            <input type="text" id="institucion" name="institucion" class="campo" maxlength="150">
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="sede" class="etiqueta">Sede</label>
-                            <input type="text" id="sede" name="sede" class="campo" maxlength="100">
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="area" class="etiqueta">Área</label>
-
-                            <select id="area" name="area" class="campo">
-                                <option value="">Seleccione</option>
-                                <option>Tecnología</option>
-                                <option>Salud</option>
-                                <option>Administración</option>
-                                <option>Educación</option>
-                                <option>Ciencias Sociales</option>
-                            </select>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="modalidad" class="etiqueta">Modalidad</label>
-
-                            <select id="modalidad" name="modalidad" class="campo">
-                                <option value="">Seleccione</option>
-                                <option>Presencial</option>
-                                <option>Semipresencial</option>
-                                <option>Online</option>
-                            </select>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="jornada" class="etiqueta">Jornada</label>
-
-                            <select id="jornada" name="jornada" class="campo">
-                                <option value="">Seleccione</option>
-                                <option>Diurna</option>
-                                <option>Vespertina</option>
-                            </select>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="duracion" class="etiqueta">Duración</label>
-                            <input type="text" id="duracion" name="duracion" class="campo" maxlength="50">
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="matricula" class="etiqueta">Matrícula</label>
-                            <input type="number" id="matricula" name="matricula" class="campo" min="0">
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="arancel" class="etiqueta">Arancel</label>
-                            <input type="number" id="arancel" name="arancel" class="campo" min="0">
-                            <small id="errorArancel" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="descripcion" class="etiqueta">Descripción</label>
-                            <textarea id="descripcion" name="descripcion" class="campo" maxlength="500"></textarea>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="imagen" class="etiqueta">Imagen</label>
-                            <input type="file" id="imagen" name="imagen" class="campo" accept="image/*">
-                        </div>
-
-                        <button type="submit" class="boton boton-primario">
-                            Guardar
-                        </button>
-
-                        <a href="ofertas.html" class="boton boton-claro">
-                            Cancelar
-                        </a>
-
-                        <p
-                            id="mensajeOferta"
-                            class="mensaje-exito oculto"
-                            role="status"
-                        >
-                            Oferta guardada correctamente.
-                        </p>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <script src="../js/auth.js"></script>
-    <script src="../js/oferta.js"></script>
-
+    <header class="navbar admin-navbar"><div class="navbar-contenido"><a href="index.html" class="logo">EduBío 360 ADMIN</a><nav aria-label="Navegación administrativa"><ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="ofertas.html">Ofertas</a></li><li><a href="usuarios.html">Usuarios</a></li><li><a class="cerrar-sesion" href="../login.html">Cerrar sesión</a></li></ul></nav></div></header>
+    <main><section class="seccion"><div class="contenedor admin-formulario"><div class="tarjeta formulario-tarjeta"><h1>Nueva oferta académica</h1><p class="descripcion-formulario">Completa la información de la nueva oferta.</p>
+        <form id="formOferta" novalidate>
+            <div class="grupo-formulario"><label class="etiqueta" for="codigo">Código</label><input class="campo" id="codigo" name="codigo" type="text" minlength="3"></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="carrera">Carrera</label><input class="campo" id="carrera" name="carrera" type="text" maxlength="100"></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="institucion">Institución</label><input class="campo" id="institucion" name="institucion" type="text" maxlength="150"></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="sede">Sede</label><input class="campo" id="sede" name="sede" type="text" maxlength="100"></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="area">Área</label><select class="campo" id="area" name="area"><option value="">Seleccione</option><option>Tecnología</option><option>Salud</option><option>Administración y Comercio</option><option>Educación</option><option>Ciencias Sociales</option><option>Derecho</option><option>Arte y Arquitectura</option></select></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="modalidad">Modalidad</label><select class="campo" id="modalidad" name="modalidad"><option value="">Seleccione</option><option>Presencial</option><option>Semipresencial</option><option>No Presencial</option></select></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="jornada">Jornada</label><select class="campo" id="jornada" name="jornada"><option value="">Seleccione</option><option>Diurno</option><option>Vespertino</option><option>A Distancia</option><option>Semipresencial</option><option>Otro</option></select></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="duracion">Duración</label><input class="campo" id="duracion" name="duracion" type="text" maxlength="50" placeholder="8 semestres"></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="matricula">Matrícula</label><input class="campo" id="matricula" name="matricula" type="number" min="0" step="1"></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="arancel">Arancel</label><input class="campo" id="arancel" name="arancel" type="number" min="0" step="1"></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="descripcion">Descripción (opcional)</label><textarea class="campo" id="descripcion" name="descripcion" maxlength="500"></textarea></div>
+            <div class="grupo-formulario"><label class="etiqueta" for="imagen">Imagen (opcional)</label><input class="campo" id="imagen" name="imagen" type="file" accept="image/*"></div>
+            <button class="boton boton-primario" type="submit">Guardar oferta</button><a class="boton boton-claro" href="ofertas.html">Cancelar</a><p id="mensajeOferta" class="mensaje-exito oculto" role="status">Oferta creada correctamente.</p>
+        </form>
+    </div></div></section></main>
+    <script src="../js/auth.js"></script><script src="../js/datos-ofertas.js"></script><script src="../js/oferta.js"></script>
 </body>
-
 </html>

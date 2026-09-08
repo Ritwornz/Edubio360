@@ -1,6 +1,9 @@
 const sesionPanelOrientador = obtenerSesion();
-const solicitudesOrientador = obtenerSolicitudes().filter(function (solicitud) { return solicitud.orientador === sesionPanelOrientador?.correo; });
+const todasSolicitudes = obtenerSolicitudes();
+const solicitudesOrientador = todasSolicitudes.filter(function (solicitud) { return solicitud.orientador === sesionPanelOrientador?.correo; });
+const disponiblesOrientador = todasSolicitudes.filter(function (solicitud) { return !solicitud.orientador && ["PENDIENTE", "REPROGRAMADA"].includes(solicitud.estado); }).length;
 const contarEstado = function (estado) { return solicitudesOrientador.filter(function (solicitud) { return solicitud.estado === estado; }).length; };
+document.getElementById("disponibles").textContent = disponiblesOrientador;
 document.getElementById("pendientes").textContent = contarEstado("PENDIENTE");
 document.getElementById("aceptadas").textContent = contarEstado("ACEPTADA");
 document.getElementById("proximas").textContent = solicitudesOrientador.filter(function (solicitud) { return ["ACEPTADA", "REPROGRAMADA"].includes(solicitud.estado); }).length;

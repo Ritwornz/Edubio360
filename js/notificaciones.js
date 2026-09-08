@@ -9,7 +9,7 @@ function textoSeguro(valor) {
 }
 
 contenedorNotificaciones.innerHTML = notificaciones.length
-    ? notificaciones.map(function (notificacion) {
-        return `<article class="tarjeta"><p>${textoSeguro(notificacion.texto)}</p><small>${new Date(notificacion.fecha).toLocaleString("es-CL")}</small></article>`;
-    }).join("")
-    : '<div class="estado-vacio"><h2>Sin notificaciones</h2></div>';
+    ? notificaciones.map(function (notificacion) { return `<article class="tarjeta"><p>${textoSeguro(notificacion.texto)}</p><small>${new Date(notificacion.fecha).toLocaleString("es-CL")}</small></article>`; }).join("")
+    : '<div class="estado-vacio"><h2>Sin notificaciones</h2><p>No tienes avisos pendientes.</p></div>';
+
+marcarNotificacionesLeidas(sesionNotificaciones?.correo);

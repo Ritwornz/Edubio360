@@ -1,25 +1,19 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>EduBío 360 | Catálogo</title>
-
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/componentes.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/ajustes.css">
 </head>
-
 <body>
-
     <header class="navbar">
         <div class="navbar-contenido">
-
             <a href="index.html" class="logo">EduBío 360</a>
-
             <nav aria-label="Navegación principal">
                 <ul class="nav-links">
                     <li><a href="index.html">Inicio</a></li>
@@ -29,56 +23,46 @@
                     <li><a href="contacto.html">Contacto</a></li>
                     <li><a href="comparar.html">Comparar</a></li>
                     <li><a href="mapa.html">Mapa</a></li>
-                    <li>
-                        <a href="login.html" class="boton boton-primario">
-                            Iniciar sesión
-                        </a>
-                    </li>
+                    <li><a href="login.html" class="boton boton-primario">Iniciar sesión</a></li>
                 </ul>
             </nav>
-
         </div>
     </header>
-
     <main>
-
         <section class="seccion">
-
             <div class="contenedor">
-
-                <h1 class="titulo-seccion">
-                    Catálogo de ofertas académicas
-                </h1>
-
-                <p class="descripcion-seccion">
-                    Explora alternativas de Educación Superior y compara sus principales características.
-                </p>
-
+                <h1 class="titulo-seccion">Catálogo de ofertas académicas</h1>
+                <p class="descripcion-seccion">Busca una carrera y compara alternativas de distintas instituciones según sede, modalidad, jornada, duración, matrícula y arancel.</p>
+                <div class="filtros-catalogo tarjeta">
+                    <div class="grupo-formulario">
+                        <label class="etiqueta" for="busquedaCatalogo">Buscar</label>
+                        <input class="campo" id="busquedaCatalogo" type="search" placeholder="Carrera, institución o sede">
+                    </div>
+                    <div class="grupo-formulario">
+                        <label class="etiqueta" for="filtroCarrera">Carrera o grupo</label>
+                        <select class="campo" id="filtroCarrera"><option value="">Todas</option></select>
+                    </div>
+                    <div class="grupo-formulario">
+                        <label class="etiqueta" for="filtroSede">Sede</label>
+                        <select class="campo" id="filtroSede"><option value="">Todas</option></select>
+                    </div>
+                    <button type="button" class="boton boton-claro" id="limpiarFiltros">Limpiar</button>
+                </div>
+                <p id="cantidadResultados" class="resultados-catalogo" role="status"></p>
                 <div id="contenedorOfertas" class="grid-tarjetas"></div>
-
                 <div class="destacadas-acciones">
+                    <a href="comparar.html" class="boton boton-primario">Abrir comparador</a>
                     <a href="mapa.html" class="boton boton-secundario">Ver mapa de sedes</a>
                 </div>
-
             </div>
-
         </section>
-
     </main>
-
     <footer class="footer">
-
-        <div class="footer-contenido">
-            <p>© 2026 EduBío 360</p>
-            <p>Proyecto académico de Desarrollo Fullstack II.</p>
-        </div>
-
+        <div class="footer-contenido"><p>© 2026 EduBío 360</p><p>Proyecto académico de Desarrollo Fullstack II.</p></div>
     </footer>
-
+    <script src="js/auth.js"></script>
     <script src="js/datos-ofertas.js"></script>
     <script src="js/comparador-storage.js"></script>
     <script src="js/catalogo.js"></script>
-
 </body>
-
 </html>

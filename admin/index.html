@@ -1,1 +1,54 @@
-<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>EduBío 360 | Administración</title><link rel="stylesheet" href="../css/variables.css"><link rel="stylesheet" href="../css/global.css"><link rel="stylesheet" href="../css/componentes.css"><link rel="stylesheet" href="../css/admin.css"><link rel="stylesheet" href="../css/responsive.css"></head><body class="admin-body" data-rol="ADMINISTRADOR" data-login="../"><header class="navbar admin-navbar"><div class="navbar-contenido"><a href="index.html" class="logo">EduBío 360 ADMIN</a><nav><ul class="nav-links"><li><a href="ofertas.html">Ofertas</a></li><li><a href="usuarios.html">Usuarios</a></li><li><a class="cerrar-sesion" href="../login.html">Cerrar sesión</a></li></ul></nav></div></header><main><section class="seccion"><div class="contenedor"><h1>Panel administrativo</h1><div class="estadisticas-grid"><article class="tarjeta"><strong id="totalUsuarios">0</strong><p>Usuarios</p></article><article class="tarjeta"><strong id="totalEstudiantes">0</strong><p>Estudiantes</p></article><article class="tarjeta"><strong id="totalOrientadores">0</strong><p>Orientadores</p></article><article class="tarjeta"><strong id="totalOfertas">0</strong><p>Ofertas</p></article><article class="tarjeta"><strong id="solicitudesPendientes">0</strong><p>Pendientes</p></article><article class="tarjeta"><strong id="solicitudesAceptadas">0</strong><p>Aceptadas</p></article><article class="tarjeta"><strong id="solicitudesAtendidas">0</strong><p>Atendidas</p></article><article class="tarjeta"><strong id="solicitudesCanceladas">0</strong><p>Canceladas</p></article></div></div></section></main><script src="../js/auth.js"></script><script src="../js/usuarios-storage.js"></script><script src="../js/solicitudes-storage.js"></script><script src="../js/datos-ofertas.js"></script><script src="../js/dashboard-admin.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduBío 360 | Administración</title>
+    <link rel="stylesheet" href="../css/variables.css">
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/componentes.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/ajustes.css">
+</head>
+<body class="admin-body" data-rol="ADMINISTRADOR" data-login="../">
+    <header class="navbar admin-navbar">
+        <div class="navbar-contenido">
+            <a href="index.html" class="logo">EduBío 360 ADMIN</a>
+            <nav aria-label="Navegación administrativa">
+                <ul class="nav-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="ofertas.html">Ofertas</a></li>
+                    <li><a href="usuarios.html">Usuarios</a></li>
+                    <li><a class="cerrar-sesion" href="../login.html">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="seccion">
+            <div class="contenedor">
+                <span class="badge">Administrador</span>
+                <h1>Panel administrativo</h1>
+                <p class="descripcion-seccion">Gestiona usuarios, roles y ofertas académicas.</p>
+                <div class="estadisticas-grid">
+                    <article class="tarjeta"><strong id="totalUsuarios">0</strong><p>Usuarios</p></article>
+                    <article class="tarjeta"><strong id="totalEstudiantes">0</strong><p>Estudiantes</p></article>
+                    <article class="tarjeta"><strong id="totalOrientadores">0</strong><p>Orientadores</p></article>
+                    <article class="tarjeta"><strong id="totalOfertas">0</strong><p>Ofertas</p></article>
+                    <article class="tarjeta"><strong id="solicitudesPendientes">0</strong><p>Pendientes</p></article>
+                    <article class="tarjeta"><strong id="solicitudesAceptadas">0</strong><p>Aceptadas</p></article>
+                    <article class="tarjeta"><strong id="solicitudesAtendidas">0</strong><p>Atendidas</p></article>
+                    <article class="tarjeta"><strong id="solicitudesCanceladas">0</strong><p>Canceladas</p></article>
+                </div>
+                <div class="panel-acciones"><a href="ofertas.html" class="boton boton-primario">Gestionar ofertas</a><a href="usuarios.html" class="boton boton-secundario">Gestionar usuarios</a></div>
+            </div>
+        </section>
+    </main>
+    <script src="../js/auth.js"></script>
+    <script src="../js/usuarios-storage.js"></script>
+    <script src="../js/solicitudes-storage.js"></script>
+    <script src="../js/datos-ofertas.js"></script>
+    <script src="../js/dashboard-admin.js"></script>
+</body>
+</html>

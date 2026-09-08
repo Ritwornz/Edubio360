@@ -10,4 +10,7 @@ const valoresPanel = {
     solicitudesAtendidas: solicitudesPanel.filter(function (solicitud) { return solicitud.estado === "ATENDIDA"; }).length,
     solicitudesCanceladas: solicitudesPanel.filter(function (solicitud) { return solicitud.estado === "CANCELADA"; }).length
 };
-Object.entries(valoresPanel).forEach(function ([id, valor]) { document.getElementById(id).textContent = valor; });
+Object.entries(valoresPanel).forEach(function ([id, valor]) {
+    const elemento = document.getElementById(id);
+    if (elemento) elemento.textContent = valor;
+});

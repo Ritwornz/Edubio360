@@ -1,21 +1,16 @@
-const CLAVE_COMPARADOR = "comparador";
+const CLAVE_COMPARADOR = "comparadorEduBio";
+let errorComparador = "";
 
 function obtenerIdsComparador() {
     try {
-        const datos = JSON.parse(localStorage.getItem(CLAVE_COMPARADOR));
-
-        if (!Array.isArray(datos)) {
-            return [];
-        }
-
-        return [...new Set(datos
-            .map(function (item) {
-                return typeof item === "object" && item !== null ? item.id : item;
-            })
-            .map(Number)
-            .filter(Number.isInteger))];
+        const ids = JSON.parse(localStorage.getItem(CLAVE_COMPARADOR));
+        if (!Array.isArray(ids)) return [];
+        const validos = ids.map(Number).filter(function (id) {
+            return Number.isInteger(id) && ofertas.some(function (oferta) { return oferta.id === id; });
+        });
+        if (validos.length !== ids.length) guardarIdsComparador(validos);
+        return validos;
     } catch {
-        localStorage.removeItem(CLAVE_COMPARADOR);
         return [];
     }
 }
@@ -24,13 +19,42 @@ function guardarIdsComparador(ids) {
     localStorage.setItem(CLAVE_COMPARADOR, JSON.stringify(ids));
 }
 
-function agregarOfertaAlComparador(id) {
-    const ids = obtenerIdsComparador();
+function obtenerErrorComparador() {
+    return errorComparador;
+}
 
-    if (ids.includes(id)) {
+function agregarOfertaAlComparador(id) {
+    errorComparador = "";
+    const oferta = ofertas.find(function (item) { return item.id === Number(id); });
+    if (!oferta) {
+        errorComparador = "inexistente";
         return false;
     }
 
-    guardarIdsComparador([...ids, id]);
+    const ids = obtenerIdsComparador();
+    if (ids.includes(oferta.id)) {
+        errorComparador = "duplicado";
+        return false;
+    }
+
+    if (ids.length >= 3) {
+        errorComparador = "maximo";
+        return false;
+    }
+
+    if (ids.length) {
+        const primera = ofertas.find(function (item) { return item.id === ids[0]; });
+        if (primera && primera.grupoComparacion !== oferta.grupoComparacion) {
+            errorComparador = "grupo";
+            return false;
+        }
+    }
+
+    ids.push(oferta.id);
+    guardarIdsComparador(ids);
     return true;
+}
+
+function vaciarComparadorStorage() {
+    guardarIdsComparador([]);
 }

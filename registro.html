@@ -1,217 +1,35 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EduBío 360 | Registro</title>
-
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/componentes.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/ajustes.css">
 </head>
-
 <body>
-
-    <header class="navbar">
-        <div class="navbar-contenido">
-
-            <a href="index.html" class="logo">EduBío 360</a>
-
-            <nav aria-label="Navegación principal">
-                <ul class="nav-links">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li><a href="catalogo.html">Carreras</a></li>
-                    <li><a href="novedades.html">Novedades</a></li>
-                    <li><a href="nosotros.html">Nosotros</a></li>
-                    <li><a href="contacto.html">Contacto</a></li>
-                    <li><a href="comparar.html">Comparar</a></li>
-                    <li><a href="login.html">Iniciar sesión</a></li>
-                </ul>
-            </nav>
-
-        </div>
-    </header>
-
-    <main>
-
-        <section class="seccion">
-
-            <div class="contenedor formulario-contenedor">
-
-                <div class="tarjeta formulario-tarjeta">
-
-                    <h1>Crear cuenta</h1>
-
-                    <p class="descripcion-formulario">
-                        Completa tus datos para registrarte en EduBío 360.
-                    </p>
-
-                    <form id="formUsuario" novalidate>
-
-                        <div class="grupo-formulario">
-                            <label for="run" class="etiqueta">RUN</label>
-
-                            <input
-                                type="text"
-                                id="run"
-                                name="run"
-                                class="campo"
-                                maxlength="9"
-                                placeholder="123456785"
-                                aria-describedby="errorRun"
-                            >
-
-                            <small id="errorRun" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="nombre" class="etiqueta">Nombre</label>
-
-                            <input
-                                type="text"
-                                id="nombre"
-                                name="nombre"
-                                class="campo"
-                                maxlength="50"
-                                autocomplete="given-name"
-                                aria-describedby="errorNombre"
-                            >
-
-                            <small id="errorNombre" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="apellidos" class="etiqueta">Apellidos</label>
-
-                            <input
-                                type="text"
-                                id="apellidos"
-                                name="apellidos"
-                                class="campo"
-                                maxlength="100"
-                                autocomplete="family-name"
-                                aria-describedby="errorApellidos"
-                            >
-
-                            <small id="errorApellidos" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="correo" class="etiqueta">Correo electrónico</label>
-
-                            <input
-                                type="email"
-                                id="correo"
-                                name="correo"
-                                class="campo"
-                                maxlength="100"
-                                autocomplete="email"
-                                aria-describedby="errorCorreo"
-                            >
-
-                            <small id="errorCorreo" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="fechaNacimiento" class="etiqueta">
-                                Fecha de nacimiento (opcional)
-                            </label>
-
-                            <input
-                                type="date"
-                                id="fechaNacimiento"
-                                name="fechaNacimiento"
-                                class="campo"
-                                autocomplete="bday"
-                                aria-describedby="errorFechaNacimiento"
-                            >
-
-                            <small id="errorFechaNacimiento" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="region" class="etiqueta">Región</label>
-
-                            <select
-                                id="region"
-                                name="region"
-                                class="campo"
-                                aria-describedby="errorRegion"
-                            >
-                                <option value="">Seleccione una región</option>
-                            </select>
-
-                            <small id="errorRegion" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="comuna" class="etiqueta">Comuna</label>
-
-                            <select
-                                id="comuna"
-                                name="comuna"
-                                class="campo"
-                                aria-describedby="errorComuna"
-                                disabled
-                            >
-                                <option value="">Seleccione una comuna</option>
-                            </select>
-
-                            <small id="errorComuna" class="mensaje-error"></small>
-                        </div>
-
-                        <div class="grupo-formulario">
-                            <label for="direccion" class="etiqueta">Dirección</label>
-
-                            <input
-                                type="text"
-                                id="direccion"
-                                name="direccion"
-                                class="campo"
-                                maxlength="300"
-                                autocomplete="address-line1"
-                                aria-describedby="errorDireccion"
-                            >
-
-                            <small id="errorDireccion" class="mensaje-error"></small>
-                        </div>
-
-                        <button
-                            type="submit"
-                            class="boton boton-primario boton-ancho"
-                        >
-                            Registrarme
-                        </button>
-
-                        <p
-                            id="mensajeUsuario"
-                            class="mensaje-exito oculto"
-                            role="status"
-                        >
-                            Usuario registrado correctamente.
-                        </p>
-
-                    </form>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <footer class="footer">
-        <div class="footer-contenido">
-            <p>© 2026 EduBío 360</p>
-        </div>
-    </footer>
-
+    <header class="navbar"><div class="navbar-contenido"><a href="index.html" class="logo">EduBío 360</a><nav aria-label="Navegación principal"><ul class="nav-links"><li><a href="index.html">Inicio</a></li><li><a href="catalogo.html">Carreras</a></li><li><a href="novedades.html">Novedades</a></li><li><a href="nosotros.html">Nosotros</a></li><li><a href="contacto.html">Contacto</a></li><li><a href="comparar.html">Comparar</a></li><li><a href="login.html">Iniciar sesión</a></li></ul></nav></div></header>
+    <main><section class="seccion"><div class="contenedor formulario-contenedor"><div class="tarjeta formulario-tarjeta"><h1>Crear cuenta</h1><p class="descripcion-formulario">Completa tus datos para registrarte como estudiante en EduBío 360.</p>
+        <form id="formUsuario" novalidate>
+            <div class="grupo-formulario"><label for="run" class="etiqueta">RUN</label><input type="text" id="run" name="run" class="campo" maxlength="9" placeholder="123456785"><small id="errorRun" class="mensaje-error"></small></div>
+            <div class="grupo-formulario"><label for="nombre" class="etiqueta">Nombre</label><input type="text" id="nombre" name="nombre" class="campo" maxlength="50" autocomplete="given-name"><small id="errorNombre" class="mensaje-error"></small></div>
+            <div class="grupo-formulario"><label for="apellidos" class="etiqueta">Apellidos</label><input type="text" id="apellidos" name="apellidos" class="campo" maxlength="100" autocomplete="family-name"><small id="errorApellidos" class="mensaje-error"></small></div>
+            <div class="grupo-formulario"><label for="correo" class="etiqueta">Correo electrónico</label><input type="email" id="correo" name="correo" class="campo" maxlength="100" autocomplete="email"><small id="errorCorreo" class="mensaje-error"></small></div>
+            <div class="grupo-formulario"><label for="fechaNacimiento" class="etiqueta">Fecha de nacimiento (opcional)</label><input type="date" id="fechaNacimiento" name="fechaNacimiento" class="campo" autocomplete="bday"><small id="errorFechaNacimiento" class="mensaje-error"></small></div>
+            <div class="grupo-formulario"><label for="region" class="etiqueta">Región</label><select id="region" name="region" class="campo"><option value="">Seleccione una región</option></select><small id="errorRegion" class="mensaje-error"></small></div>
+            <div class="grupo-formulario"><label for="comuna" class="etiqueta">Comuna</label><select id="comuna" name="comuna" class="campo" disabled><option value="">Seleccione una comuna</option></select><small id="errorComuna" class="mensaje-error"></small></div>
+            <div class="grupo-formulario"><label for="direccion" class="etiqueta">Dirección</label><input type="text" id="direccion" name="direccion" class="campo" maxlength="300" autocomplete="address-line1"><small id="errorDireccion" class="mensaje-error"></small></div>
+            <button type="submit" class="boton boton-primario boton-ancho">Registrarme</button>
+            <p id="mensajeUsuario" class="mensaje-exito oculto" role="status">Cuenta creada correctamente.</p>
+        </form>
+    </div></div></section></main>
+    <footer class="footer"><div class="footer-contenido"><p>© 2026 EduBío 360</p></div></footer>
+    <script src="js/auth.js"></script>
+    <script src="js/usuarios-storage.js"></script>
     <script src="js/regiones.js"></script>
     <script src="js/usuario.js"></script>
-
 </body>
-
 </html>
